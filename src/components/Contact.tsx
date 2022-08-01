@@ -9,17 +9,17 @@ export const Contact = () => {
       className="bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-600 w-full h-auto py-28 text-white md:px-12"
     >
       <div className="flex flex-col p-4 justify-center max-w-screen-lg mx-auto h-full">
-        <div className="pb-8">
-          <p className="text-4xl font-bold inline border-b-4 border-gray-500">
+        <div className="pb-4 sm:pb-8">
+          <p className="text-2xl sm:text-4xl font-bold inline border-b-4 border-gray-500">
             Contato
           </p>
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col overflow-hidden">
           <a
             href="http://github.com/francissverissimo"
             target="_blank"
-            className="flex items-center w-fit my-4 text-xl duration-200 hover:text-orange-500"
+            className="flex items-center w-fit my-4 sm:text-lg duration-200 hover:text-orange-500"
           >
             <FaGithub size={25} className="mr-2" />
             github.com/francissverissimo
@@ -28,18 +28,18 @@ export const Contact = () => {
           <a
             href="http://linkedin.com/in/francissverissimo"
             target="_blank"
-            className="flex items-center w-fit my-4 text-xl duration-200 hover:text-orange-500"
+            className="flex items-center w-fit whitespace-nowrap my-4 sm:text-lg duration-200 hover:text-orange-500"
           >
             <FaLinkedin size={25} className="mr-2" />
             linkedin.com/in/francissverissimo
           </a>
 
-          <p className="flex items-center w-fit my-4 text-xl">
+          <p className="flex items-center w-fit my-4 sm:text-lg">
             <FiMail size={25} className="mr-2" />
             francissv97@gmail.com
           </p>
 
-          <p className="flex items-center w-fit my-4 text-xl font-[sans]">
+          <p className="flex items-center w-fit my-4 sm:text-lg font-[sans]">
             <BsTelephone size={25} className="mr-2" />
             +55 67 9 8484-6194
           </p>
@@ -47,7 +47,7 @@ export const Contact = () => {
           <a
             href="https://wa.me/5567984846194"
             target="_blank"
-            className="text-white text-xl font-bold w-fit px-6 py-5 my-2 flex items-center rounded-lg bg-green-600 cursor-pointer duration-200 hover:scale-105"
+            className="text-white text-md sm:text-lg font-bold w-fit px-4 py-2 my-2 flex items-center rounded-lg bg-green-600 cursor-pointer duration-200 hover:bg-green-700"
           >
             Entrar em contato
             <FaWhatsapp size={25} className="ml-2" />
