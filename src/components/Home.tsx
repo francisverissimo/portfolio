@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
 import { db, storage } from "../services/firebase";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-scroll";
-
-import { getDownloadURL, ref } from "firebase/storage";
+import { Loading } from "./Loading";
 
 interface HomeFirebaseQuery {
   title: string;
@@ -12,29 +12,36 @@ interface HomeFirebaseQuery {
 }
 
 export const Home = () => {
-  const [homeImage, setHomeImage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [homeImageURL, setHomeImageURL] = useState("");
   const [homeData, setHomeData] = useState<HomeFirebaseQuery>();
 
   useEffect(() => {
     const subscriber = () => {
-      const docHomeRef = doc(db, "data-page/home");
-      const imageHomeRef = ref(storage, "home-image.png");
+      async function getHomeFirebaseData() {
+        const docHomeRef = doc(db, "data-page/home");
+        const imageHomeRef = ref(storage, "home-image.png");
 
-      getDoc(docHomeRef)
-        .then((result) => {
-          if (result.exists()) {
-            const { title, text } = result.data() as HomeFirebaseQuery;
+        try {
+          const docHome = await getDoc(docHomeRef);
+          const imageHomeURL = await getDownloadURL(imageHomeRef);
+
+          if (docHome.exists()) {
+            const { title, text } = docHome.data() as HomeFirebaseQuery;
 
             setHomeData({ title, text });
           }
-        })
-        .catch((error) => console.log(error));
 
-      getDownloadURL(imageHomeRef)
-        .then((result) => {
-          setHomeImage(result);
-        })
-        .catch((error) => console.log(error));
+          setHomeImageURL(imageHomeURL);
+        } catch (error) {
+          console.log(error);
+          setIsLoading(false);
+        }
+      }
+
+      getHomeFirebaseData().finally(() => {
+        setTimeout(() => setIsLoading(false), 700);
+      });
     };
 
     return subscriber();
@@ -45,7 +52,13 @@ export const Home = () => {
       id="home"
       className="bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-600 w-full h-auto py-28 text-white md:px-12"
     >
-      <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center h-full p-5 gap-2 md:flex-row">
+      {isLoading && <Loading />}
+
+      <div
+        className={`max-w-screen-lg mx-auto flex flex-col items-center justify-center h-full p-4 gap-2 md:flex-row ${
+          isLoading ? "hidden" : "visible"
+        }`}
+      >
         <div className="flex flex-col justify-center flex-1">
           <h2 className="text-4xl pt-5 font-bold text-white md:text-5xl md:p-0">
             {homeData?.title}
@@ -69,7 +82,7 @@ export const Home = () => {
 
         <div>
           <img
-            src={homeImage}
+            src={homeImageURL}
             alt="my personal picture"
             className="mx-auto w-60 md:w-96"
           />

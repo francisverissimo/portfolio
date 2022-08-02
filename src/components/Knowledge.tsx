@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../services/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { Loading } from "./Loading";
 
 interface KnowledgeType {
   id: number;
@@ -10,6 +11,7 @@ interface KnowledgeType {
 }
 
 export const Knowledge = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [knowledges, setKnowledges] = useState<KnowledgeType[]>([]);
 
   useEffect(() => {
@@ -26,10 +28,13 @@ export const Knowledge = () => {
           }
         } catch (error) {
           console.log(error);
+          setIsLoading(false);
         }
       }
 
-      getKnowledgesDoc();
+      getKnowledgesDoc().finally(() => {
+        setTimeout(() => setIsLoading(false), 700);
+      });
     };
 
     return subscriber();
@@ -40,7 +45,13 @@ export const Knowledge = () => {
       id="knowledge"
       className="bg-gradient-to-b from-zinc-600 to-zinc-900 w-full h-auto py-28 md:px-12"
     >
-      <div className="max-w-screen-lg mx-auto p-4 flex flex-col justify-center w-full h-full text-white">
+      {isLoading && <Loading />}
+
+      <div
+        className={`max-w-screen-lg mx-auto p-4 flex flex-col justify-center w-full h-full text-white ${
+          isLoading ? "hidden" : "visible"
+        }`}
+      >
         <div className="pb-6 sm:pb-12">
           <p className="text-2xl sm:text-4xl font-bold border-b-4 border-gray-500 inline">
             Conhecimentos

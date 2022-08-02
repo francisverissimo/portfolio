@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../services/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { FaGlobe, FaGithub } from "react-icons/fa";
+import { Loading } from "./Loading";
 
 interface ProjectsType {
   id: number;
@@ -13,6 +14,7 @@ interface ProjectsType {
 }
 
 export const Projects = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [projects, setProjets] = useState<ProjectsType[]>([]);
 
   useEffect(() => {
@@ -28,10 +30,13 @@ export const Projects = () => {
           }
         } catch (error) {
           console.log(error);
+          setIsLoading(false);
         }
       }
 
-      getProjectsDoc();
+      getProjectsDoc().finally(() => {
+        setTimeout(() => setIsLoading(false), 700);
+      });
     };
 
     return subscriber();
@@ -42,14 +47,18 @@ export const Projects = () => {
       id="projects"
       className="bg-gradient-to-b from-zinc-900 to-zinc-600 w-full h-auto py-28 text-white md:px-12"
     >
-      <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
+      {isLoading && <Loading />}
+
+      <div
+        className={`max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full ${
+          isLoading ? "hidden" : "visible"
+        }`}
+      >
         <div className="pb-8">
           <p className="text-4xl font-bold inline border-b-4 border-gray-500">
             Projetos
           </p>
-          <p className="py-6 font-medium text-lg">
-            Confira alguns dos meus trabalhos
-          </p>
+          <p className="py-6 font-medium text-lg">Alguns dos meus trabalhos</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8 sm:px-0">
