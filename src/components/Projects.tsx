@@ -90,7 +90,7 @@ export const Projects = () => {
         />
       ) : (
         <div
-          className={`max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full ${
+          className={`max-w-screen-lg px-7 mx-auto flex flex-col justify-center w-full h-full ${
             isLoading ? "hidden" : "visible"
           }`}
         >
