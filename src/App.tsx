@@ -8,7 +8,7 @@ import { Projects } from "./components/Projects";
 export function App() {
   return (
     <>
-      <NavBar />;
+      <NavBar />
       <Home />
       <About />
       <Projects />
