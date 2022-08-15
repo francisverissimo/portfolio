@@ -82,9 +82,9 @@ export const Knowledge = () => {
   return (
     <div
       id="knowledge"
-      className="bg-gradient-to-b from-zinc-600 to-zinc-900 w-full h-auto py-28 md:px-12"
+      className="bg-gradient-to-b from-zinc-600 to-zinc-900 w-full h-auto py-20"
     >
-      <div className="max-w-screen-lg mx-auto p-4 flex flex-col justify-center w-full h-full text-white">
+      <div className="max-w-screen-lg mx-auto px-4 flex flex-col justify-center w-full h-full text-white">
         <div className="pb-6 sm:pb-12">
           <p className="text-2xl sm:text-4xl font-bold border-b-4 border-gray-500 inline">
             Conhecimentos
@@ -96,7 +96,7 @@ export const Knowledge = () => {
             knowledges.map(({ id, imageURL, name, style }) => (
               <div
                 key={id}
-                className={`bg-gradient-to-b from-zinc-600 to-zinc-900 shadow-md hover:scale-105 duration-300 py-2 rounded-lg ${style}`}
+                className={`bg-gradient-to-b from-zinc-600 to-zinc-900 shadow-md hover:scale-105 duration-300 py-2 rounded-md ${style}`}
               >
                 <img src={imageURL} alt="" className="w-20 mx-auto" />
                 <p className="mt-4 text-xs sm:text-sm font-semibold">{name}</p>

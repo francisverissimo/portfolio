@@ -3,15 +3,12 @@ import { doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 import { db, storage } from "../services/firebase";
 import { Loading } from "./Loading";
-
-interface AboutFirebaseQuery {
-  text: string[];
-}
+import { AboutFirestoreData } from "../types/handleComponentTypes";
 
 export const About = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [aboutImageURL, setAboutImageURL] = useState("");
-  const [aboutData, setAboutData] = useState<AboutFirebaseQuery>();
+  const [aboutData, setAboutData] = useState<AboutFirestoreData>();
 
   useEffect(() => {
     const subscriber = () => {
@@ -24,7 +21,7 @@ export const About = () => {
           const imageAboutURL = await getDownloadURL(imageAboutRef);
 
           if (docAbout.exists()) {
-            const { text } = docAbout.data() as AboutFirebaseQuery;
+            const { text } = docAbout.data() as AboutFirestoreData;
 
             setAboutData({ text });
           }
@@ -46,12 +43,12 @@ export const About = () => {
   return (
     <div
       id="about"
-      className="bg-gradient-to-b from-zinc-600 to-zinc-900 w-full h-auto py-28 text-white md:px-12"
+      className="bg-gradient-to-b from-zinc-600 to-zinc-900 w-full h-auto py-20 text-white"
     >
       {isLoading && <Loading />}
 
       <div
-        className={`max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full ${
+        className={`max-w-screen-lg px-4 mx-auto flex flex-col justify-center w-full h-full ${
           isLoading ? "hidden" : "visible"
         }`}
       >

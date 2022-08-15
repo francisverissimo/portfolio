@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-scroll";
 
@@ -34,8 +34,8 @@ export const NavBar = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed z-10">
-      <h1 className="font-signature text-2xl ml-2 md:text-3xl">
+    <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-zinc-900 fixed z-10">
+      <h1 className="font-signature text-2xl md:text-2xl">
         Francis S. Verissimo
       </h1>
 
@@ -44,7 +44,7 @@ export const NavBar = () => {
           return (
             <li
               key={id}
-              className="px-4 cursor-pointer capitalize font-medium text-zinc-400 hover:scale-110 duration-200"
+              className="px-4 cursor-pointer capitalize font-medium text-zinc-400 hover:scale-110 duration-200 py-4 first:pl-0 last:pr-0"
             >
               <Link to={link} smooth duration={500}>
                 {name}
@@ -56,7 +56,7 @@ export const NavBar = () => {
 
       <div
         onClick={() => setShowNav(!showNav)}
-        className="text-zinc-400 cursor-pointer pr-4 z-10 md:hidden"
+        className="text-zinc-400 cursor-pointer py-4 pl-4 pr-0 z-10 md:hidden"
       >
         {showNav ? <FaTimes size={30} /> : <FaBars size={30} />}
       </div>

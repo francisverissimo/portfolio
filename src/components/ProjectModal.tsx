@@ -1,9 +1,9 @@
 import { BsXCircle } from "react-icons/bs";
 import { FaGithub, FaGlobe } from "react-icons/fa";
-import { ProjectsType } from "./Projects";
+import { ProjectFirestoreData } from "../types/handleComponentTypes";
 
 interface Props {
-  projectToBeShown: ProjectsType | undefined;
+  projectToBeShown: ProjectFirestoreData | undefined;
   closeModal: () => void;
 }
 
@@ -14,7 +14,9 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
         <div className="max-w-screen-lg mx-auto flex flex-col justify-center pb-10">
           <img src={projectToBeShown.imageURL} className="w-full" />
           <div className="mx-4 mt-4 flex flex-col gap-4">
-            <p className="text-xl font-medium">{projectToBeShown.name}</p>
+            <p className="text-xl font-medium font-sans">
+              {projectToBeShown.name}
+            </p>
 
             <p className="flex gap-y-2 gap-x-2 items-center flex-wrap border-b-2 border-zinc-500 pb-4">
               <span className="font-sans font-medium text-sm">{"STACK: "}</span>
@@ -31,7 +33,7 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
             <div className="flex gap-4 flex-wrap">
               {projectToBeShown.applicationUrl && (
                 <div className="flex items-center gap-2 bg-zinc-700 px-2 rounded duration-200 hover:text-orange-500 overflow-hidden">
-                  <FaGithub />
+                  <FaGlobe />
                   <a
                     className="truncate font-sans"
                     href={projectToBeShown.applicationUrl}
@@ -42,7 +44,7 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
               )}
 
               <div className="flex items-center gap-2 bg-zinc-700 px-2 rounded duration-200 hover:text-orange-500 overflow-hidden">
-                <FaGlobe />
+                <FaGithub />
                 <a
                   className="truncate font-sans"
                   href={projectToBeShown.githubRepoUrl}
@@ -59,7 +61,7 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
 
       <button
         onClick={closeModal}
-        className="absolute right-5 top-2 cursor-pointer bg-zinc-700 p-1 rounded-full"
+        className="fixed right-5 top-2 cursor-pointer bg-zinc-700 p-1 rounded-full"
       >
         <BsXCircle size={32} className="text-red-600" />
       </button>

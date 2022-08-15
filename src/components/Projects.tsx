@@ -4,22 +4,14 @@ import { doc, getDoc } from "firebase/firestore";
 import { FaGlobe, FaGithub } from "react-icons/fa";
 import { Loading } from "./Loading";
 import { ProjectModal } from "./ProjectModal";
-
-export interface ProjectsType {
-  id: number;
-  name: string;
-  imageURL: string;
-  githubRepoUrl: string;
-  applicationUrl?: string;
-  stack: string[];
-}
+import { ProjectFirestoreData } from "../types/handleComponentTypes";
 
 export const Projects = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showProjectModal, setShowProjectModal] = useState(false);
-  const [projects, setProjets] = useState<ProjectsType[]>([]);
+  const [projects, setProjets] = useState<ProjectFirestoreData[]>([]);
   const [projectToBeShownInTheModal, setprojectToBeShownInTheModal] =
-    useState<ProjectsType>();
+    useState<ProjectFirestoreData>();
 
   const toggleScrollbarY = () => {
     document.body.style.overflowY =
@@ -40,13 +32,6 @@ export const Projects = () => {
     setprojectToBeShownInTheModal(filteredProject[0]);
 
     document.body.style.overflowY = "hidden";
-    // toggleScrollbarY();
-
-    // handle vertical scrollbar
-    //   if (document.body.style.overflowY === "auto") {
-    //   } else {
-    //     document.body.style.overflowY = "auto";
-    //   }
   }
 
   useEffect(() => {
@@ -89,11 +74,11 @@ export const Projects = () => {
         />
       )}
       <div
-        className={`max-w-screen-lg px-7 mx-auto flex flex-col justify-center w-full h-full ${
+        className={`max-w-screen-lg px-4 mx-auto flex flex-col justify-center w-full h-full ${
           isLoading ? "hidden" : "visible"
         }`}
       >
-        <div className="pb-8">
+        <div>
           <p className="text-4xl font-bold inline border-b-4 border-gray-500">
             {"Projetos"}
           </p>
@@ -108,7 +93,7 @@ export const Projects = () => {
               ({ id, name, imageURL, applicationUrl, githubRepoUrl }) => (
                 <div
                   key={id}
-                  className="flex flex-col shadow-lg shadow-zinc-500"
+                  className="flex flex-col shadow-md shadow-zinc-500 rounded-md overflow-hidden"
                 >
                   <img
                     src={imageURL}
