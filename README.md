@@ -1,25 +1,25 @@
-# Francis's Portfolio
-My personal portfolio website
-
 <p align="center">
-  <img alt="francis's portfolio" src=".github/screenshot-portfolio.png" width="100%">
+  <img alt="francis's portfolio" src=".github/francis-s-portfolio.svg" width="100%">
 </p>
 
-<h2>Site publicado <a href="https://francissportfolio.vercel.app/">aqui</a></h2>
+<h2>Site published <a href="https://francissportfolio.vercel.app/">here</a></h2>
 
-## Tecnologias
+## Technologies
 
-Este projeto foi desenvolvido com React, TailwindCSS e Typescript.
+This project was developed with the following technologies:
 
-<div style="display: flex;">
-  <img width="48px" src="./src/assets/knowledge/react.png" alt="React">
-  <img width="48px" src="./src/assets/knowledge/tailwind.png" alt="TailwindCSS">
-  <img width="48px" src="./src/assets/knowledge/typescript.svg" alt="Typescript">
-</div>
+<ul>
+  <li>React</li>
+  <li>TailwindCSS</li>
+  <li>Firebase</li>
+  <li>Typescript</li>
+  <li>Vite JS</li>
+</ul>
 
-## Projeto
+## Project
 
 <p>
-  Meu portfolio pessoal.
-  Contém as seguintes seções: Home, Sobre, Projetos, Conhecimentos e Contato
+  My personal portfolio website
 </p>
+
+**<p align="center" weight="bold">Personal project</p>**
