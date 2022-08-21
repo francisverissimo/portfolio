@@ -36,6 +36,7 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
                   <FaGlobe />
                   <a
                     className="truncate font-sans"
+                    target="_blank"
                     href={projectToBeShown.applicationUrl}
                   >
                     {projectToBeShown.applicationUrl.substring(8)}
@@ -47,14 +48,13 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
                 <FaGithub />
                 <a
                   className="truncate font-sans"
+                  target="_blank"
                   href={projectToBeShown.githubRepoUrl}
                 >
                   {projectToBeShown.githubRepoUrl.substring(8)}
                 </a>
               </div>
             </div>
-
-            {/* <p>{projectToBeShown.description}</p> */}
           </div>
         </div>
       )}
