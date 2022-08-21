@@ -13,47 +13,44 @@ export const Projects = () => {
   const [projectToBeShownInTheModal, setprojectToBeShownInTheModal] =
     useState<ProjectFirestoreData>();
 
-  const toggleScrollbarY = () => {
+  function toggleScrollbarY() {
     document.body.style.overflowY =
       document.body.style.overflowY == "" ? "hidden" : "";
-  };
+  }
 
-  const handleCloseModal = () => {
+  function handleCloseModal() {
     setShowProjectModal((e) => !e);
-
     toggleScrollbarY();
-  };
+  }
 
   function handleToggleModalProject(name: string) {
-    setShowProjectModal(true);
-
     const filteredProject = projects.filter((project) => project.name === name);
-
     setprojectToBeShownInTheModal(filteredProject[0]);
-
     document.body.style.overflowY = "hidden";
+    setShowProjectModal(true);
   }
 
   useEffect(() => {
     const subscriber = () => {
       async function getProjectsDoc() {
-        try {
-          const docRef = doc(db, "data-page", "projects");
-          const docSnap = await getDoc(docRef);
+        const docRef = doc(db, "data-page", "projects");
+        const docSnap = await getDoc(docRef);
 
-          if (docSnap.exists()) {
-            const data = docSnap.data();
-            setProjets(data.projects);
-          }
-        } catch (error) {
-          console.log(error);
-          setIsLoading(false);
+        if (docSnap.exists()) {
+          const data = docSnap.data().projects as ProjectFirestoreData[];
+
+          setProjets(data);
         }
       }
 
-      getProjectsDoc().finally(() => {
-        setTimeout(() => setIsLoading(false), 700);
-      });
+      getProjectsDoc()
+        .finally(() => {
+          setTimeout(() => setIsLoading(false), 700);
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          console.log(error);
+        });
     };
 
     return subscriber();
@@ -89,50 +86,50 @@ export const Projects = () => {
 
         <div className="grid lg:grid-cols-2 gap-x-5 gap-y-8 sm:px-0">
           {projects &&
-            projects.map(
-              ({ id, name, imageURL, applicationUrl, githubRepoUrl }) => (
-                <div
-                  key={id}
-                  className="flex flex-col shadow-md shadow-zinc-500 rounded-md overflow-hidden"
-                >
+            projects.map(({ id, name, applicationUrl, githubRepoUrl }) => (
+              <div
+                key={id}
+                className="flex flex-col shadow-md shadow-zinc-500 rounded-md overflow-hidden"
+              >
+                {/* {urlArray && (
                   <img
-                    src={imageURL}
+                    src={urlArrayFilter(name)}
                     alt=""
                     className="duration-200 mx-auto hover:scale-105 cursor-pointer"
                     onClick={() => handleToggleModalProject(name)}
                   />
+                )} */}
 
-                  <div className="flex flex-col justify-start h-full py-3 bg-gradient-to-br from-zinc-900 to-zinc-600">
-                    <button
-                      className="font-sans font-medium w-fit mx-auto duration-200 hover:text-orange-500 hover:scale-105"
-                      onClick={() => handleToggleModalProject(name)}
-                    >
-                      {name}
-                    </button>
+                <div className="flex flex-col justify-start h-full py-3 bg-gradient-to-br from-zinc-900 to-zinc-600">
+                  <button
+                    className="font-sans font-medium w-fit mx-auto duration-200 hover:text-orange-500 hover:scale-105"
+                    onClick={() => handleToggleModalProject(name)}
+                  >
+                    {name}
+                  </button>
 
-                    {applicationUrl && (
-                      <a
-                        href={applicationUrl}
-                        target="_blank"
-                        className="flex items-center w-fit py-2 font-medium px-4 duration-200 hover:text-orange-500 hover:cursor-pointer"
-                      >
-                        <FaGlobe className="mr-1" />
-                        Demonstração
-                      </a>
-                    )}
-
+                  {applicationUrl && (
                     <a
-                      href={githubRepoUrl}
+                      href={applicationUrl}
                       target="_blank"
-                      className="flex items-center w-fit py-2 px-4 duration-200 hover:text-orange-500 hover:cursor-pointer"
+                      className="flex items-center w-fit py-2 font-medium px-4 duration-200 hover:text-orange-500 hover:cursor-pointer"
                     >
-                      <FaGithub className="mr-1" />
-                      Repositório GitHub
+                      <FaGlobe className="mr-1" />
+                      Demonstração
                     </a>
-                  </div>
+                  )}
+
+                  <a
+                    href={githubRepoUrl}
+                    target="_blank"
+                    className="flex items-center w-fit py-2 px-4 duration-200 hover:text-orange-500 hover:cursor-pointer"
+                  >
+                    <FaGithub className="mr-1" />
+                    Repositório GitHub
+                  </a>
                 </div>
-              )
-            )}
+              </div>
+            ))}
         </div>
 
         <a
