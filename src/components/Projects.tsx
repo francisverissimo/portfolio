@@ -86,50 +86,49 @@ export const Projects = () => {
 
         <div className="grid lg:grid-cols-2 gap-x-5 gap-y-8 sm:px-0">
           {projects &&
-            projects.map(({ id, name, applicationUrl, githubRepoUrl }) => (
-              <div
-                key={id}
-                className="flex flex-col shadow-md shadow-zinc-500 rounded-md overflow-hidden"
-              >
-                {/* {urlArray && (
+            projects.map(
+              ({ id, name, imageURL, applicationUrl, githubRepoUrl }) => (
+                <div
+                  key={id}
+                  className="flex flex-col shadow-md shadow-zinc-500 rounded-md overflow-hidden"
+                >
                   <img
-                    src={urlArrayFilter(name)}
-                    alt=""
+                    src={imageURL}
                     className="duration-200 mx-auto hover:scale-105 cursor-pointer"
                     onClick={() => handleToggleModalProject(name)}
                   />
-                )} */}
 
-                <div className="flex flex-col justify-start h-full py-3 bg-gradient-to-br from-zinc-900 to-zinc-600">
-                  <button
-                    className="font-sans font-medium w-fit mx-auto duration-200 hover:text-orange-500 hover:scale-105"
-                    onClick={() => handleToggleModalProject(name)}
-                  >
-                    {name}
-                  </button>
-
-                  {applicationUrl && (
-                    <a
-                      href={applicationUrl}
-                      target="_blank"
-                      className="flex items-center w-fit py-2 font-medium px-4 duration-200 hover:text-orange-500 hover:cursor-pointer"
+                  <div className="flex flex-col justify-start h-full py-3 bg-gradient-to-br from-zinc-900 to-zinc-600">
+                    <button
+                      className="font-sans font-medium w-fit mx-auto duration-200 hover:text-orange-500 hover:scale-105"
+                      onClick={() => handleToggleModalProject(name)}
                     >
-                      <FaGlobe className="mr-1" />
-                      Demonstração
-                    </a>
-                  )}
+                      {name}
+                    </button>
 
-                  <a
-                    href={githubRepoUrl}
-                    target="_blank"
-                    className="flex items-center w-fit py-2 px-4 duration-200 hover:text-orange-500 hover:cursor-pointer"
-                  >
-                    <FaGithub className="mr-1" />
-                    Repositório GitHub
-                  </a>
+                    {applicationUrl && (
+                      <a
+                        href={applicationUrl}
+                        target="_blank"
+                        className="flex items-center w-fit py-2 font-medium px-4 duration-200 hover:text-orange-500 hover:cursor-pointer"
+                      >
+                        <FaGlobe className="mr-1" />
+                        Demonstração
+                      </a>
+                    )}
+
+                    <a
+                      href={githubRepoUrl}
+                      target="_blank"
+                      className="flex items-center w-fit py-2 px-4 duration-200 hover:text-orange-500 hover:cursor-pointer"
+                    >
+                      <FaGithub className="mr-1" />
+                      Repositório GitHub
+                    </a>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
         </div>
 
         <a
