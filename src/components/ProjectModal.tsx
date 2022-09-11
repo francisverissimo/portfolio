@@ -23,7 +23,7 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
               {projectToBeShown.stack.map((item, index) => (
                 <span
                   key={index}
-                  className="font-sans text-sm font-medium bg-pink-900 px-1 rounded cursor-none duration-300 hover:scale-110 border-x-2 border-zinc-600"
+                  className="font-sans text-sm font-medium bg-pink-900 px-1 rounded cursor-default duration-75 hover:scale-110 border-x-2 border-zinc-600"
                 >
                   {item}
                 </span>
@@ -55,6 +55,8 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
                 </a>
               </div>
             </div>
+
+            <div>{projectToBeShown.description}</div>
           </div>
         </div>
       )}

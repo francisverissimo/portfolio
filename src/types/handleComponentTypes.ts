@@ -10,6 +10,7 @@ export interface AboutFirestoreData {
 export interface ProjectFirestoreData {
   id: number;
   name: string;
+  description: string;
   imageURL: string;
   githubRepoUrl: string;
   applicationUrl?: string;
