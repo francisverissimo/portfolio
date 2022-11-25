@@ -5,39 +5,29 @@ import { db, storage } from "../services/firebase";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-scroll";
 import { Loading } from "./Loading";
-import { HomeFirestoreData } from "../types/handleComponentTypes";
+import { HomeFirestoreData } from "../types";
 
-export const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
+interface HomeProps {
+  homeData: HomeFirestoreData;
+}
+
+export const Home = ({ homeData }: HomeProps) => {
   const [homeImageURL, setHomeImageURL] = useState("");
-  const [homeData, setHomeData] = useState<HomeFirestoreData>();
 
   useEffect(() => {
     const subscriber = () => {
       async function getHomeFirebaseData() {
-        const docHomeRef = doc(db, "data-page/home");
         const imageHomeRef = ref(storage, "home-image.png");
 
         try {
-          const docHome = await getDoc(docHomeRef);
           const imageHomeURL = await getDownloadURL(imageHomeRef);
-
-          if (docHome.exists()) {
-            const { title, text } = docHome.data() as HomeFirestoreData;
-
-            setHomeData({ title, text });
-          }
-
           setHomeImageURL(imageHomeURL);
         } catch (error) {
           console.log(error);
-          setIsLoading(false);
         }
       }
 
-      getHomeFirebaseData().finally(() => {
-        setTimeout(() => setIsLoading(false), 700);
-      });
+      getHomeFirebaseData();
     };
 
     return subscriber();
@@ -48,12 +38,8 @@ export const Home = () => {
       id="home"
       className="bg-gradient-to-b from-zinc-900 via-zinc-900 to-zinc-600 w-full h-auto py-20 text-white"
     >
-      {isLoading && <Loading />}
-
       <div
-        className={`max-w-screen-lg mx-auto flex flex-col items-center justify-center px-4 pt-5 h-full gap-2 md:flex-row ${
-          isLoading ? "hidden" : "visible"
-        }`}
+        className={`max-w-screen-lg mx-auto flex flex-col items-center justify-center px-4 pt-5 h-full gap-2 md:flex-row         `}
       >
         {homeData && (
           <div className="flex flex-col justify-center">
