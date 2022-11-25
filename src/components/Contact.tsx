@@ -6,7 +6,7 @@ export const Contact = () => {
   return (
     <div
       id="contact"
-      className="bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-600 w-full h-auto py-20 text-white"
+      className="bg-gradient-to-b from-zinc-900 via-zinc-700 to-zinc-600 w-full h-auto py-20 text-white"
     >
       <div className="flex flex-col px-4 justify-center max-w-screen-lg mx-auto h-full overflow-hidden">
         <div className="pb-4 sm:pb-8">

@@ -4,7 +4,7 @@ export const Knowledge = () => {
   return (
     <div
       id="knowledge"
-      className="bg-gradient-to-b from-zinc-600 to-zinc-900 w-full h-auto py-20"
+      className="bg-gradient-to-b from-zinc-600 via-zinc-900 to-zinc-900 w-full h-auto py-20"
     >
       <div className="max-w-screen-lg mx-auto px-4 flex flex-col justify-center w-full h-full text-white">
         <div className="pb-6 sm:pb-12">
@@ -18,7 +18,7 @@ export const Knowledge = () => {
             knowledge.map(({ id, image, name, style }) => (
               <div
                 key={id}
-                className={`bg-gradient-to-b from-zinc-600 to-zinc-900 shadow-md hover:scale-105 duration-300 py-2 rounded-md ${style}`}
+                className={`bg-gradient-to-b from-zinc-600 to-zinc-900 shadow-md hover:scale-105 duration-100 py-2 rounded-md ${style}`}
               >
                 <img src={image} alt="" className="w-20 mx-auto" />
                 <p className="mt-4 text-xs sm:text-sm font-semibold">{name}</p>

@@ -43,14 +43,15 @@ export const NavBar = () => {
         <ul className="hidden md:flex">
           {links.map(({ id, name, link }) => {
             return (
-              <li
+              <Link
+                to={link}
                 key={id}
-                className="px-4 cursor-pointer capitalize font-medium text-zinc-400 hover:scale-110 duration-200 py-4 first:pl-0 last:pr-0"
+                smooth
+                duration={500}
+                className="px-4 cursor-pointer capitalize font-medium text-zinc-400 hover:scale-110 duration-75 py-4 first:pl-0 last:pr-0"
               >
-                <Link to={link} smooth duration={500}>
-                  {name}
-                </Link>
-              </li>
+                {name}
+              </Link>
             );
           })}
         </ul>
@@ -66,19 +67,16 @@ export const NavBar = () => {
           <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-zinc-900 to-zinc-600 text-zinc-400">
             {links.map(({ id, name, link }) => {
               return (
-                <li
+                <Link
                   key={id}
+                  onClick={() => setShowNav(!showNav)}
+                  to={link}
+                  smooth
+                  duration={500}
                   className="px-4 cursor-pointer capitalize py-6 text-4xl"
                 >
-                  <Link
-                    onClick={() => setShowNav(!showNav)}
-                    to={link}
-                    smooth
-                    duration={500}
-                  >
-                    {name}
-                  </Link>
-                </li>
+                  {name}
+                </Link>
               );
             })}
           </ul>
