@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
-import { db, storage } from "../services/firebase";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { storage } from "../services/firebase";
 import { Link } from "react-scroll";
-import { Loading } from "./Loading";
 import { HomeFirestoreData } from "../types";
+import { CaretRight, CircleNotch } from "phosphor-react";
 
 interface HomeProps {
   homeData: HomeFirestoreData;
@@ -13,6 +11,7 @@ interface HomeProps {
 
 export const Home = ({ homeData }: HomeProps) => {
   const [homeImageURL, setHomeImageURL] = useState("");
+  const [imgIsLoading, setImgIsLoading] = useState(true);
 
   useEffect(() => {
     const subscriber = () => {
@@ -23,8 +22,10 @@ export const Home = ({ homeData }: HomeProps) => {
           const imageHomeURL = await getDownloadURL(imageHomeRef);
           setHomeImageURL(imageHomeURL);
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
+
+        setImgIsLoading(false);
       }
 
       getHomeFirebaseData();
@@ -36,7 +37,7 @@ export const Home = ({ homeData }: HomeProps) => {
   return (
     <div
       id="home"
-      className="bg-gradient-to-b from-zinc-900 via-zinc-900 to-zinc-600 w-full h-auto py-20 text-white"
+      className="bg-gradient-to-b from-zinc-900 via-zinc-900 to-zinc-500 w-full h-auto py-20 text-white"
     >
       <div
         className={`max-w-screen-lg mx-auto flex flex-col items-center justify-center px-4 pt-5 h-full gap-2 md:flex-row         `}
@@ -46,18 +47,20 @@ export const Home = ({ homeData }: HomeProps) => {
             <h2 className="text-4xl font-bold text-white md:text-5xl md:p-0">
               {homeData.title}
             </h2>
-            <p className="text-zinc-400 py-4 max-w-md">{homeData.text}</p>
+            <p className="text-zinc-300 py-4 max-w-md text-lg">
+              {homeData.text}
+            </p>
 
             <div>
               <Link
                 to="projects"
                 smooth
                 duration={500}
-                className="group text-white w-fit px-6 py-3 my-2 flex items-center rounded-md bg-gradient-to-r from-yellow-500 via-orange-500 to-orange-600 cursor-pointer"
+                className="group text-white w-fit px-6 py-3 my-2 flex gap-1 items-center rounded-md bg-gradient-to-r from-yellow-500 via-orange-500 to-orange-600 cursor-pointer"
               >
                 Projetos
                 <span className="group-hover:rotate-90 duration-200">
-                  <MdOutlineKeyboardArrowRight size={25} className="ml-1" />
+                  <CaretRight size={22} />
                 </span>
               </Link>
             </div>
@@ -65,11 +68,15 @@ export const Home = ({ homeData }: HomeProps) => {
         )}
 
         <div>
-          <img
-            src={homeImageURL}
-            alt="my personal picture"
-            className="mx-auto w-60 md:w-96"
-          />
+          {imgIsLoading ? (
+            <CircleNotch size={32} className="animate-spin" />
+          ) : (
+            <img
+              src={homeImageURL}
+              alt="my personal picture"
+              className="mx-auto w-60 md:w-96"
+            />
+          )}
         </div>
       </div>
     </div>
