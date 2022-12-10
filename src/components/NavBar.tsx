@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { List, X } from "phosphor-react";
 import { Link } from "react-scroll";
 
 export const NavBar = () => {
@@ -60,7 +60,7 @@ export const NavBar = () => {
           onClick={() => setShowNav(!showNav)}
           className="text-zinc-400 cursor-pointer py-4 pl-4 pr-0 z-10 md:hidden"
         >
-          {showNav ? <FaTimes size={30} /> : <FaBars size={30} />}
+          {showNav ? <X size={32} /> : <List size={32} />}
         </div>
 
         {showNav && (
