@@ -1,6 +1,10 @@
-import { FaWhatsapp, FaGithub, FaLinkedin } from "react-icons/fa";
-import { FiMail } from "react-icons/fi";
-import { BsTelephone } from "react-icons/bs";
+import {
+  Envelope,
+  GithubLogo,
+  LinkedinLogo,
+  Phone,
+  WhatsappLogo,
+} from "phosphor-react";
 
 export const Contact = () => {
   return (
@@ -19,38 +23,39 @@ export const Contact = () => {
           <a
             href="http://github.com/francissverissimo"
             target="_blank"
-            className="flex items-center w-fit my-4 sm:text-lg duration-200 hover:text-orange-500"
+            className="flex gap-2 items-center w-fit my-4 sm:text-lg duration-200 hover:text-orange-500"
           >
-            <FaGithub size={25} className="mr-2" />
-            {"Perfil GitHub"}
+            <GithubLogo size={26} />
+
+            {"Meu GitHub"}
           </a>
 
           <a
             href="http://linkedin.com/in/francissverissimo"
             target="_blank"
-            className="flex items-center w-fit whitespace-nowrap my-4 sm:text-lg duration-200 hover:text-orange-500"
+            className="flex gap-2 items-center w-fit whitespace-nowrap my-4 sm:text-lg duration-200 hover:text-orange-500"
           >
-            <FaLinkedin size={25} className="mr-2" />
-            {"Perfil LinkedIn"}
+            <LinkedinLogo size={26} />
+            {"Meu LinkedIn"}
           </a>
 
-          <p className="flex items-center w-fit my-4 sm:text-lg">
-            <FiMail size={25} className="mr-2" />
+          <p className="flex gap-2 items-center w-fit my-4 sm:text-lg">
+            <Envelope size={26} />
             {"francissv97@gmail.com"}
           </p>
 
-          <p className="flex items-center w-fit my-4 sm:text-lg font-[sans]">
-            <BsTelephone size={25} className="mr-2" />
+          <p className="flex gap-2 items-center w-fit my-4 sm:text-lg font-[sans]">
+            <Phone size={26} />
             {"+55 67 9 8484-6194"}
           </p>
 
           <a
             href="https://wa.me/5567984846194"
             target="_blank"
-            className="text-white text-md sm:text-lg font-bold w-fit px-4 py-2 my-2 flex items-center rounded-lg bg-green-600 cursor-pointer duration-200 hover:bg-green-700"
+            className="flex gap-2 items-center text-white text-md sm:text-lg font-bold w-fit px-4 py-2 my-2 rounded-lg bg-green-600 cursor-pointer duration-200 hover:bg-green-700"
           >
             Entrar em contato
-            <FaWhatsapp size={25} className="ml-2" />
+            <WhatsappLogo size={26} />
           </a>
         </div>
       </div>
