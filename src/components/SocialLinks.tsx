@@ -1,5 +1,4 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
+import { Envelope, GithubLogo, LinkedinLogo } from "phosphor-react";
 
 export const SocialLinks = () => {
   const links = [
@@ -7,7 +6,7 @@ export const SocialLinks = () => {
       id: 1,
       child: (
         <>
-          Linkedin <FaLinkedin size={30} />
+          Linkedin <LinkedinLogo size={30} />
         </>
       ),
       href: "https://linkedin.com/in/francissverissimo",
@@ -18,7 +17,7 @@ export const SocialLinks = () => {
       id: 2,
       child: (
         <>
-          GitHub <FaGithub size={30} />
+          GitHub <GithubLogo size={30} />
         </>
       ),
       href: "https://github.com/francissverissimo",
@@ -28,7 +27,7 @@ export const SocialLinks = () => {
       id: 3,
       child: (
         <>
-          Mail <HiOutlineMail size={30} />
+          Mail <Envelope size={30} />
         </>
       ),
       href: "mailto:francissv97@gmail.com",
@@ -37,7 +36,7 @@ export const SocialLinks = () => {
   ];
 
   return (
-    <div className="hidden lg:flex flex-col top-[35%] left-0 fixed">
+    <div className="hidden :flex flex-col top-[35%] left-0 fixed">
       <ul>
         {links.map(({ id, child, href, style }) => (
           <li
