@@ -1,13 +1,15 @@
-import { BsXCircle } from "react-icons/bs";
-import { FaGithub, FaGlobe } from "react-icons/fa";
-import { ProjectFirestoreData } from "../types/handleComponentTypes";
+import { ProjectFirestoreData } from "../types";
+import { X, Globe, GithubLogo } from "phosphor-react";
 
-interface Props {
+interface ProjectModalProps {
   projectToBeShown: ProjectFirestoreData | undefined;
   closeModal: () => void;
 }
 
-export function ProjectModal({ projectToBeShown, closeModal }: Props) {
+export function ProjectModal({
+  projectToBeShown,
+  closeModal,
+}: ProjectModalProps) {
   return (
     <div className="fixed bottom-0 left-0 right-0 top-0 z-10 bg-zinc-800 overflow-y-auto">
       {projectToBeShown && (
@@ -32,8 +34,8 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
 
             <div className="flex gap-4 flex-wrap">
               {projectToBeShown.applicationUrl && (
-                <div className="flex items-center gap-2 bg-zinc-700 px-2 rounded duration-200 hover:text-orange-500 overflow-hidden">
-                  <FaGlobe />
+                <div className="flex items-center gap-2 bg-zinc-900 px-2 rounded duration-200 hover:text-orange-500 overflow-hidden">
+                  <Globe />
                   <a
                     className="truncate font-sans"
                     target="_blank"
@@ -44,8 +46,8 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
                 </div>
               )}
 
-              <div className="flex items-center gap-2 bg-zinc-700 px-2 rounded duration-200 hover:text-orange-500 overflow-hidden">
-                <FaGithub />
+              <div className="flex items-center gap-2 bg-zinc-900 px-2 rounded duration-200 hover:text-orange-500 overflow-hidden">
+                <GithubLogo />
                 <a
                   className="truncate font-sans"
                   target="_blank"
@@ -63,9 +65,9 @@ export function ProjectModal({ projectToBeShown, closeModal }: Props) {
 
       <button
         onClick={closeModal}
-        className="fixed right-5 top-2 cursor-pointer bg-zinc-700 p-1 rounded-full"
+        className="fixed right-5 top-2 cursor-pointer bg-zinc-900 p-1 rounded-full"
       >
-        <BsXCircle size={32} className="text-red-600" />
+        <X size={32} className="text-red-600" />
       </button>
     </div>
   );
