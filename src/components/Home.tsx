@@ -39,9 +39,7 @@ export const Home = ({ homeData }: HomeProps) => {
       id="home"
       className="bg-gradient-to-b from-zinc-900 via-zinc-900 to-zinc-500 w-full h-auto py-20 text-white"
     >
-      <div
-        className={`max-w-screen-lg mx-auto flex flex-col items-center justify-center px-4 pt-5 h-full gap-2 md:flex-row         `}
-      >
+      <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center px-4 pt-5 h-full gap-2 md:flex-row">
         {homeData && (
           <div className="flex flex-col justify-center">
             <h2 className="text-4xl font-bold text-white md:text-5xl md:p-0">
@@ -69,7 +67,7 @@ export const Home = ({ homeData }: HomeProps) => {
 
         <div>
           {imgIsLoading ? (
-            <CircleNotch size={32} className="animate-spin" />
+            <CircleNotch size={150} className="animate-spin text-zinc-500" />
           ) : (
             <img
               src={homeImageURL}

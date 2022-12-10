@@ -1,40 +1,33 @@
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
-import { db, storage } from "../services/firebase";
-import { Loading } from "./Loading";
-import { AboutFirestoreData } from "../types/handleComponentTypes";
+import { storage } from "../services/firebase";
+import { AboutFirestoreData } from "../types";
+import { CircleNotch } from "phosphor-react";
 
-export const About = () => {
-  const [isLoading, setIsLoading] = useState(true);
+interface AboutProps {
+  aboutData: AboutFirestoreData;
+}
+
+export const About = ({ aboutData }: AboutProps) => {
   const [aboutImageURL, setAboutImageURL] = useState("");
-  const [aboutData, setAboutData] = useState<AboutFirestoreData>();
+  const [imgIsLoading, setImgIsLoading] = useState(true);
 
   useEffect(() => {
     const subscriber = () => {
       async function getAboutFirebaseData() {
-        const docAboutRef = doc(db, "data-page/about");
         const imageAboutRef = ref(storage, "about-image.png");
 
         try {
-          const docAbout = await getDoc(docAboutRef);
           const imageAboutURL = await getDownloadURL(imageAboutRef);
-
-          if (docAbout.exists()) {
-            const { text } = docAbout.data() as AboutFirestoreData;
-
-            setAboutData({ text });
-          }
-
           setAboutImageURL(imageAboutURL);
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
+
+        setImgIsLoading(false);
       }
 
-      getAboutFirebaseData().finally(() => {
-        setTimeout(() => setIsLoading(false), 700);
-      });
+      getAboutFirebaseData();
     };
 
     return subscriber();
@@ -43,15 +36,9 @@ export const About = () => {
   return (
     <div
       id="about"
-      className="bg-gradient-to-b from-zinc-600 to-zinc-900 w-full h-auto py-20 text-white"
+      className="bg-gradient-to-b from-zinc-600 to-zinc-800 w-full h-auto py-20 text-white"
     >
-      {isLoading && <Loading />}
-
-      <div
-        className={`max-w-screen-lg px-4 mx-auto flex flex-col justify-center w-full h-full ${
-          isLoading ? "hidden" : "visible"
-        }`}
-      >
+      <div className="max-w-screen-lg px-4 mx-auto flex flex-col justify-center w-full h-full">
         <div className="pb-2">
           <p className="text-4xl font-bold inline border-b-4 border-gray-500">
             Sobre
@@ -60,11 +47,15 @@ export const About = () => {
 
         <div className="flex flex-col-reverse justify-center items-center gap-10 pt-20 md:flex-row">
           <div>
-            <img
-              src={aboutImageURL}
-              alt=""
-              className="mx-auto w-60 md:w-full"
-            />
+            {imgIsLoading ? (
+              <CircleNotch size={150} className="animate-spin text-zinc-500" />
+            ) : (
+              <img
+                src={aboutImageURL}
+                alt="My profile photo"
+                className="mx-auto w-60 md:w-full"
+              />
+            )}
           </div>
 
           {aboutData && (
