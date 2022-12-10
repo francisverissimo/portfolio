@@ -4,7 +4,7 @@ export const Knowledge = () => {
   return (
     <div
       id="knowledge"
-      className="bg-gradient-to-b from-zinc-600 via-zinc-900 to-zinc-900 w-full h-auto py-20"
+      className="bg-gradient-to-t from-zinc-500 to-zinc-900 w-full h-auto py-20"
     >
       <div className="max-w-screen-lg mx-auto px-4 flex flex-col justify-center w-full h-full text-white">
         <div className="pb-6 sm:pb-12">
