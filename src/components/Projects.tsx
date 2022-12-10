@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
-import { db } from "../services/firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { FaGlobe, FaGithub } from "react-icons/fa";
-import { Loading } from "./Loading";
+import { useState } from "react";
+import { ProjectFirestoreData } from "../types";
 import { ProjectModal } from "./ProjectModal";
-import { ProjectFirestoreData } from "../types/handleComponentTypes";
+import { GithubLogo, Globe } from "phosphor-react";
 
-export const Projects = () => {
-  const [isLoading, setIsLoading] = useState(true);
+interface ProjectsProps {
+  projectsData: ProjectFirestoreData[];
+}
+
+export const Projects = ({ projectsData }: ProjectsProps) => {
   const [showProjectModal, setShowProjectModal] = useState(false);
-  const [projects, setProjets] = useState<ProjectFirestoreData[]>([]);
   const [projectToBeShownInTheModal, setprojectToBeShownInTheModal] =
     useState<ProjectFirestoreData>();
+
+  const projects = projectsData;
 
   function toggleScrollbarY() {
     document.body.style.overflowY =
@@ -30,32 +31,6 @@ export const Projects = () => {
     setShowProjectModal(true);
   }
 
-  useEffect(() => {
-    const subscriber = () => {
-      async function getProjectsDoc() {
-        const docRef = doc(db, "data-page", "projects");
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const data = docSnap.data().projects as ProjectFirestoreData[];
-
-          setProjets(data);
-        }
-      }
-
-      getProjectsDoc()
-        .finally(() => {
-          setTimeout(() => setIsLoading(false), 700);
-        })
-        .catch((error) => {
-          setIsLoading(false);
-          console.log(error);
-        });
-    };
-
-    return subscriber();
-  }, []);
-
   return (
     <div
       id="projects"
@@ -63,25 +38,20 @@ export const Projects = () => {
         showProjectModal ? "pt-0 pb-20" : "py-20"
       } text-white`}
     >
-      {isLoading && <Loading />}
       {showProjectModal && (
         <ProjectModal
           closeModal={() => handleCloseModal()}
           projectToBeShown={projectToBeShownInTheModal}
         />
       )}
-      <div
-        className={`max-w-screen-lg px-4 mx-auto flex flex-col justify-center w-full h-full ${
-          isLoading ? "hidden" : "visible"
-        }`}
-      >
+
+      <div className="max-w-screen-lg px-4 mx-auto flex flex-col justify-center w-full h-full">
         <div>
           <p className="text-4xl font-bold inline border-b-4 border-gray-500">
-            {"Projetos"}
+            Projetos
           </p>
-          <p className="py-6 font-medium text-lg">
-            {"Alguns dos meus trabalhos"}
-          </p>
+
+          <p className="py-6 font-medium text-lg">Alguns dos meus trabalhos</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-x-5 gap-y-8 sm:px-0">
@@ -100,7 +70,7 @@ export const Projects = () => {
 
                   <div className="flex flex-col justify-start h-full py-3 bg-gradient-to-br from-zinc-900 to-zinc-600">
                     <button
-                      className="font-sans font-medium w-fit mx-auto duration-200 hover:text-orange-500 hover:scale-105"
+                      className="font-sans font-medium w-fit mx-auto duration-100 hover:text-orange-500 hover:scale-105"
                       onClick={() => handleToggleModalProject(name)}
                     >
                       {name}
@@ -112,8 +82,8 @@ export const Projects = () => {
                         target="_blank"
                         className="flex items-center w-fit py-2 font-medium px-4 duration-200 hover:text-orange-500 hover:cursor-pointer"
                       >
-                        <FaGlobe className="mr-1" />
-                        Demonstração
+                        <Globe className="mr-1" />
+                        Aplicação Online
                       </a>
                     )}
 
@@ -122,7 +92,7 @@ export const Projects = () => {
                       target="_blank"
                       className="flex items-center w-fit py-2 px-4 duration-200 hover:text-orange-500 hover:cursor-pointer"
                     >
-                      <FaGithub className="mr-1" />
+                      <GithubLogo className="mr-1" />
                       Repositório GitHub
                     </a>
                   </div>
@@ -136,7 +106,7 @@ export const Projects = () => {
           href="https://github.com/francissverissimo?tab=repositories"
           target="_blank"
         >
-          <FaGithub size={25} className="mr-2" />
+          <GithubLogo size={25} className="mr-2" />
           Repositórios Github
         </a>
       </div>
