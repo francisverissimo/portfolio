@@ -13,7 +13,6 @@ import { Home } from "./components/Home";
 import { NavBar } from "./components/NavBar";
 import { Projects } from "./components/Projects";
 import { Loading } from "./components/Loading";
-import { SocialLinks } from "./components/SocialLinks";
 
 interface FrancisData {
   home: HomeFirestoreData;
