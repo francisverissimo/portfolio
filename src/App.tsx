@@ -57,7 +57,6 @@ export function App() {
             <Projects projectsData={francisData.projects} />
             <Knowledge />
             <Contact />
-            <SocialLinks />
           </>
         )
       )}

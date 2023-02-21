@@ -8,14 +8,14 @@ interface AboutProps {
   aboutData: AboutFirestoreData;
 }
 
-export const About = ({ aboutData }: AboutProps) => {
+export function About({ aboutData }: AboutProps) {
   const [aboutImageURL, setAboutImageURL] = useState("");
   const [imgIsLoading, setImgIsLoading] = useState(true);
 
   useEffect(() => {
     const subscriber = () => {
       async function getAboutFirebaseData() {
-        const imageAboutRef = ref(storage, "about-image.png");
+        const imageAboutRef = ref(storage, "home-image.png");
 
         try {
           const imageAboutURL = await getDownloadURL(imageAboutRef);
@@ -75,4 +75,4 @@ export const About = ({ aboutData }: AboutProps) => {
       </div>
     </div>
   );
-};
+}

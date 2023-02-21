@@ -1,6 +1,17 @@
+import { Popover } from "antd";
+import { useState } from "react";
 import { knowledge } from "../assets/knowledge";
 
-export const Knowledge = () => {
+type KnowledgeCardProp = {
+  item: {
+    id: number;
+    image: string;
+    name: string;
+    style: string;
+  };
+};
+
+export function Knowledge() {
   return (
     <div
       id="knowledge"
@@ -13,19 +24,37 @@ export const Knowledge = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-5 text-center md:px-0 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:px-0 md:gap-8">
           {knowledge &&
-            knowledge.map(({ id, image, name, style }) => (
-              <div
-                key={id}
-                className={`bg-gradient-to-b from-zinc-600 to-zinc-900 shadow-md hover:scale-105 duration-100 py-2 rounded-md ${style}`}
-              >
-                <img src={image} alt="" className="w-20 mx-auto" />
-                <p className="mt-4 text-xs sm:text-sm font-semibold">{name}</p>
-              </div>
+            knowledge.map((item) => (
+              <KnowledgeCard key={item.id} item={item} />
             ))}
         </div>
       </div>
     </div>
   );
-};
+}
+
+function KnowledgeCard({ item }: KnowledgeCardProp) {
+  return (
+    <Popover
+      placement="rightTop"
+      mouseEnterDelay={0}
+      mouseLeaveDelay={0}
+      autoAdjustOverflow
+      destroyTooltipOnHide
+      overlayInnerStyle={{ padding: 0 }}
+      arrow={false}
+      content={
+        <div
+          className={`text-xs sm:text-sm font-semibold px-4 py-1 rounded ${item.style}`}
+        >
+          {item.name}
+        </div>
+      }
+      className="flex bg-gradient-to-b from-zinc-600 to-zinc-900 shadow-md rounded-full p-4"
+    >
+      <img src={item.image} alt={item.name} className="w-28 mx-auto" />
+    </Popover>
+  );
+}

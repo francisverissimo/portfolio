@@ -1,38 +1,15 @@
-import { useEffect, useState } from "react";
-import { getDownloadURL, ref } from "firebase/storage";
-import { storage } from "../services/firebase";
 import { Link } from "react-scroll";
 import { HomeFirestoreData } from "../types";
-import { CaretRight, CircleNotch } from "phosphor-react";
+import { CaretRight } from "phosphor-react";
+import Lottie from "lottie-react";
+import devWorking from "../assets/animations/dev-working.json";
 
 interface HomeProps {
   homeData: HomeFirestoreData;
 }
 
-export const Home = ({ homeData }: HomeProps) => {
-  const [homeImageURL, setHomeImageURL] = useState("");
-  const [imgIsLoading, setImgIsLoading] = useState(true);
-
-  useEffect(() => {
-    const subscriber = () => {
-      async function getHomeFirebaseData() {
-        const imageHomeRef = ref(storage, "home-image.png");
-
-        try {
-          const imageHomeURL = await getDownloadURL(imageHomeRef);
-          setHomeImageURL(imageHomeURL);
-        } catch (error) {
-          console.error(error);
-        }
-
-        setImgIsLoading(false);
-      }
-
-      getHomeFirebaseData();
-    };
-
-    return subscriber();
-  }, []);
+export function Home({ homeData }: HomeProps) {
+  const { title, text } = homeData;
 
   return (
     <div
@@ -43,11 +20,10 @@ export const Home = ({ homeData }: HomeProps) => {
         {homeData && (
           <div className="flex flex-col justify-center">
             <h2 className="text-4xl font-bold text-white md:text-5xl md:p-0">
-              {homeData.title}
+              {title}
             </h2>
-            <p className="text-zinc-300 py-4 max-w-md text-lg">
-              {homeData.text}
-            </p>
+
+            <p className="text-zinc-300 py-4 max-w-md text-lg">{text}</p>
 
             <div>
               <Link
@@ -66,17 +42,9 @@ export const Home = ({ homeData }: HomeProps) => {
         )}
 
         <div>
-          {imgIsLoading ? (
-            <CircleNotch size={150} className="animate-spin text-zinc-500" />
-          ) : (
-            <img
-              src={homeImageURL}
-              alt="my personal picture"
-              className="mx-auto w-60 md:w-96"
-            />
-          )}
+          <Lottie animationData={devWorking} loop={true} />
         </div>
       </div>
     </div>
   );
-};
+}

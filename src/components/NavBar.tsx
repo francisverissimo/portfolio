@@ -2,7 +2,7 @@ import { useState } from "react";
 import { List, X } from "phosphor-react";
 import { Link } from "react-scroll";
 
-export const NavBar = () => {
+export function NavBar() {
   const [showNav, setShowNav] = useState(false);
 
   const links = [
@@ -84,4 +84,4 @@ export const NavBar = () => {
       </div>
     </div>
   );
-};
+}

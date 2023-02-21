@@ -7,7 +7,7 @@ interface ProjectsProps {
   projectsData: ProjectFirestoreData[];
 }
 
-export const Projects = ({ projectsData }: ProjectsProps) => {
+export function Projects({ projectsData }: ProjectsProps) {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const [projectToBeShownInTheModal, setprojectToBeShownInTheModal] =
     useState<ProjectFirestoreData>();
@@ -112,4 +112,4 @@ export const Projects = ({ projectsData }: ProjectsProps) => {
       </div>
     </div>
   );
-};
+}
