@@ -69,23 +69,21 @@ export function ProjectDialog({ handleClose, project }: ProjectDialogProps) {
               </Toolbar>
             </AppBar>
 
-            <div className="max-w-screen-lg mx-auto flex text-white flex-col justify-center pb-10">
-              <div className="bg-zinc-600 h-[576px] w-[1024px] rounded">
-                <img
-                  src={project.imageURL}
-                  className="w-full rounded"
-                  loading="lazy"
-                  style={{
-                    opacity: 0,
-                    transform: "scale(0.86)",
-                    transitionDuration: "200ms",
-                  }}
-                  onLoad={(t) => (
-                    (t.currentTarget.style.opacity = "1"),
-                    (t.currentTarget.style.transform = "initial")
-                  )}
-                />
-              </div>
+            <div className="max-w-screen-lg w-full mx-auto flex text-white flex-col justify-center pb-10">
+              <img
+                src={project.imageURL}
+                className="rounded-b max-w-full"
+                style={{
+                  opacity: 0,
+                  transform: "scale(0.86)",
+                  transitionDuration: "200ms",
+                }}
+                onLoad={(t) => (
+                  (t.currentTarget.style.opacity = "1"),
+                  (t.currentTarget.style.transform = "initial")
+                )}
+              />
+
               <div className="mx-4 mt-4 flex flex-col gap-4">
                 <p className="text-xl font-medium font-sans">{project.name}</p>
 
