@@ -1,15 +1,6 @@
-import { Popover } from "antd";
-import { useState } from "react";
+import { Grow } from "@mui/material";
+import * as HoverCard from "@radix-ui/react-hover-card";
 import { knowledge } from "../assets/knowledge";
-
-type KnowledgeCardProp = {
-  item: {
-    id: number;
-    image: string;
-    name: string;
-    style: string;
-  };
-};
 
 export function Knowledge() {
   return (
@@ -35,26 +26,37 @@ export function Knowledge() {
   );
 }
 
+type KnowledgeCardProp = {
+  item: {
+    id: number;
+    image: string;
+    name: string;
+    style: string;
+  };
+};
+
 function KnowledgeCard({ item }: KnowledgeCardProp) {
   return (
-    <Popover
-      placement="rightTop"
-      mouseEnterDelay={0}
-      mouseLeaveDelay={0}
-      autoAdjustOverflow
-      destroyTooltipOnHide
-      overlayInnerStyle={{ padding: 0 }}
-      arrow={false}
-      content={
-        <div
-          className={`text-xs sm:text-sm font-semibold px-4 py-1 rounded ${item.style}`}
-        >
-          {item.name}
-        </div>
-      }
-      className="flex bg-gradient-to-b from-zinc-600 to-zinc-900 shadow-md rounded-full p-4"
-    >
-      <img src={item.image} alt={item.name} className="w-28 mx-auto" />
-    </Popover>
+    <HoverCard.Root openDelay={0} closeDelay={0}>
+      <HoverCard.Trigger className="bg-gradient-to-b from-zinc-600 to-zinc-900 shadow-xl p-4">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-32 h-28 mx-auto rounded"
+        />
+      </HoverCard.Trigger>
+
+      <HoverCard.Portal>
+        <HoverCard.Content side="top" align="center">
+          <Grow in>
+            <div
+              className={`min-w-[100%] text-sm font-semibold px-4 py-1 rounded ${item.style}`}
+            >
+              {item.name}
+            </div>
+          </Grow>
+        </HoverCard.Content>
+      </HoverCard.Portal>
+    </HoverCard.Root>
   );
 }

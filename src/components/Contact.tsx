@@ -1,4 +1,3 @@
-import Lottie from "lottie-react";
 import {
   Envelope,
   GithubLogo,
@@ -6,13 +5,12 @@ import {
   Phone,
   WhatsappLogo,
 } from "phosphor-react";
-import iDevProfile from "../assets/animations/african-developer.json";
 
 export function Contact() {
   return (
     <div
       id="contact"
-      className="flex flex-col md:flex-row justify-center bg-gradient-to-b from-zinc-900 via-zinc-700 to-zinc-600 w-full h-auto py-20 text-white"
+      className="flex flex-col md:flex-row bg-gradient-to-b from-zinc-900 via-zinc-700 to-zinc-600 w-full h-auto py-20 text-white"
     >
       <div className="flex flex-col px-4 justify-center max-w-screen-lg overflow-hidden">
         <div className="pb-4 sm:pb-8">
@@ -60,14 +58,6 @@ export function Contact() {
             <WhatsappLogo size={26} />
           </a>
         </div>
-      </div>
-
-      <div className="flex max-w-md place-self-center">
-        <Lottie
-          animationData={iDevProfile}
-          loop={true}
-          className="px-4 w-fit"
-        />
       </div>
     </div>
   );

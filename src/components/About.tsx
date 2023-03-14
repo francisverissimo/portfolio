@@ -54,6 +54,16 @@ export function About({ aboutData }: AboutProps) {
                 src={aboutImageURL}
                 alt="My profile photo"
                 className="mx-auto w-60 md:w-full"
+                loading="lazy"
+                style={{
+                  opacity: 0,
+                  transform: "scale(0.86)",
+                  transitionDuration: "200ms",
+                }}
+                onLoad={(t) => (
+                  (t.currentTarget.style.opacity = "1"),
+                  (t.currentTarget.style.transform = "initial")
+                )}
               />
             )}
           </div>
