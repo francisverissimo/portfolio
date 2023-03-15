@@ -53,7 +53,7 @@ function CardProject({ project }: CardProjectProps) {
     <>
       <div
         key={project.id}
-        className="flex flex-col shadow-md shadow-zinc-500 rounded-md overflow-hidden"
+        className="flex flex-col shadow-xl rounded overflow-hidden"
       >
         <img
           src={project.imageURL}
@@ -63,7 +63,7 @@ function CardProject({ project }: CardProjectProps) {
 
         <div className="flex flex-col justify-start h-full py-3 bg-gradient-to-br from-zinc-900 to-zinc-600">
           <button
-            className="font-sans font-medium w-fit mx-auto duration-100 hover:text-orange-500 hover:scale-105"
+            className="font-sans font-medium w-fit mx-auto duration-100 hover:text-orange-500"
             onClick={() => setShowProjectModal(true)}
           >
             {project.name}

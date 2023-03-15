@@ -50,7 +50,7 @@ function KnowledgeCard({ item }: KnowledgeCardProp) {
         <HoverCard.Content side="top" align="center">
           <Grow in>
             <div
-              className={`min-w-[100%] text-sm font-semibold px-4 py-1 rounded ${item.style}`}
+              className={`text-sm font-semibold px-4 py-1 rounded mb-2 ${item.style}`}
             >
               {item.name}
             </div>
