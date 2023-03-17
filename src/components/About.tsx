@@ -70,15 +70,12 @@ export function About({ aboutData }: AboutProps) {
 
           {aboutData && (
             <div>
-              <p className="text-xl">{aboutData.text[0]}</p>
-
-              <br />
-
-              <p className="text-xl">{aboutData.text[1]}</p>
-
-              <br />
-
-              <p className="text-xl">{aboutData.text[2]}</p>
+              {aboutData.text.map((paragraph, index) => (
+                <div key={index}>
+                  <p className="text-xl">{paragraph}</p>
+                  <br />
+                </div>
+              ))}
             </div>
           )}
         </div>
