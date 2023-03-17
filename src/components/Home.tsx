@@ -18,12 +18,12 @@ export function Home({ homeData }: HomeProps) {
     >
       <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center px-4 pt-5 h-full gap-2 md:flex-row">
         {homeData && (
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center max-w-lg">
             <h2 className="text-4xl font-bold text-white md:text-5xl md:p-0">
               {title}
             </h2>
 
-            <p className="text-zinc-300 py-4 max-w-md text-lg">{text}</p>
+            <p className="text-zinc-300 py-4 text-lg text-justify">{text}</p>
 
             <div>
               <Link
