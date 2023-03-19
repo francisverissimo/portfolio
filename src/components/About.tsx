@@ -53,7 +53,7 @@ export function About({ aboutData }: AboutProps) {
               <img
                 src={aboutImageURL}
                 alt="My profile photo"
-                className="mx-auto w-60 md:w-full"
+                className="mx-auto w-60 md:w-96 rounded-full"
                 loading="lazy"
                 style={{
                   opacity: 0,
