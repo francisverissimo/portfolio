@@ -1,21 +1,10 @@
 import { Circle, CircleDashed, CircleNotch } from "phosphor-react";
 
-
 export function Loading() {
   return (
-    <div className="bg-gradient-to-t from-zinc-600 via-zinc-400 to-zinc-200 flex justify-center items-center h-screen w-full">
+    <div className="flex h-screen w-full items-center justify-center bg-gradient-to-t from-zinc-700 via-zinc-600 to-zinc-500">
       <div className="flex justify-center gap-4">
-        <CircleNotch
-          color="#71717a"
-          className="w-24 h-24 animate-spin"
-        />
-
-        <div className="flex flex-col justify-between">
-          <Circle className="animate-ping" />
-          <Circle color="#f97316" className="animate-ping" />
-        </div>
-
-        <CircleDashed color="#f97316" className="w-24 h-24 animate-spin" />
+        <CircleNotch color="#f97316" weight="thin" className="h-24 w-24 animate-spin" />
       </div>
     </div>
   );

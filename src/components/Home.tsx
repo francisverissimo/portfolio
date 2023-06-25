@@ -1,6 +1,7 @@
 import { Link } from "react-scroll";
 import { HomeFirestoreData } from "../types";
-import { CaretRight } from "phosphor-react";
+import { CaretRight, GithubLogo, LinkedinLogo } from "phosphor-react";
+import { knowledge } from "../assets/knowledge";
 import Lottie from "lottie-react";
 import devWorking from "../assets/animations/dev-working.json";
 
@@ -14,27 +15,43 @@ export function Home({ homeData }: HomeProps) {
   return (
     <div
       id="home"
-      className="bg-gradient-to-b from-zinc-900 via-zinc-900 to-zinc-500 w-full h-auto py-20 text-white"
+      className="h-auto w-full bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-600 py-20 text-white"
     >
-      <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center px-4 pt-5 h-full gap-2 md:flex-row">
+      <div className="mx-auto flex h-full max-w-screen-lg flex-col items-center justify-center gap-2 px-4 pt-5 md:flex-row">
         {homeData && (
-          <div className="flex flex-col justify-center max-w-lg">
-            <h2 className="text-4xl font-bold text-white md:text-5xl md:p-0">
-              {title}
-            </h2>
+          <div className="flex max-w-lg flex-col justify-center">
+            <h2 className="text-4xl font-bold text-white md:p-0 md:text-5xl">{title}</h2>
 
-            <p className="text-zinc-300 py-4 text-lg text-justify">{text}</p>
+            <p className="py-4 text-justify text-lg text-zinc-300">{text}</p>
+
+            <div className="flex items-center gap-4 place-self-end">
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/in/francissverissimo/"
+                className="rounded-full bg-zinc-400 p-2 duration-100 hover:bg-zinc-100"
+              >
+                <LinkedinLogo weight="bold" size={26} className="text-zinc-900" />
+              </a>
+
+              <a
+                target="_blank"
+                href="https://github.com/francissverissimo/"
+                className="rounded-full bg-zinc-400 p-2 duration-100 hover:bg-zinc-100"
+              >
+                <GithubLogo weight="bold" size={26} className="text-zinc-900" />
+              </a>
+            </div>
 
             <div>
               <Link
                 to="projects"
                 smooth
                 duration={500}
-                className="group text-white w-fit px-6 py-3 my-2 flex gap-1 items-center rounded-md bg-gradient-to-r from-yellow-500 via-orange-500 to-orange-600 cursor-pointer"
+                className="group my-2 flex w-fit cursor-pointer items-center gap-1 rounded-lg bg-gradient-to-r from-amber-500 via-orange-600 to-orange-700 px-6 py-3 font-medium text-white"
               >
                 Projetos
-                <span className="group-hover:rotate-90 duration-200">
-                  <CaretRight size={22} />
+                <span className="duration-200 group-hover:rotate-90">
+                  <CaretRight weight="bold" size={22} />
                 </span>
               </Link>
             </div>
@@ -43,6 +60,18 @@ export function Home({ homeData }: HomeProps) {
 
         <div>
           <Lottie animationData={devWorking} loop={true} />
+        </div>
+      </div>
+
+      <div className="mt-8 flex flex-col items-center gap-2">
+        <strong className="font-medium">Tech Stack</strong>
+
+        <div className="flex gap-2">
+          {knowledge.map((k) => (
+            <div key={k.id} className="flex h-14 w-14 justify-center rounded-full bg-zinc-50">
+              <img src={k.image} alt={k.name} className="w-8" />
+            </div>
+          ))}
         </div>
       </div>
     </div>

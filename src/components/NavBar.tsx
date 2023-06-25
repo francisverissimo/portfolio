@@ -21,11 +21,11 @@ export function NavBar() {
       link: "projects",
       name: "projetos",
     },
-    {
-      id: 4,
-      link: "knowledge",
-      name: "conhecimentos",
-    },
+    // {
+    //   id: 4,
+    //   link: "knowledge",
+    //   name: "conhecimentos",
+    // },
     {
       id: 5,
       link: "contact",
@@ -34,11 +34,9 @@ export function NavBar() {
   ];
 
   return (
-    <div className="w-full h-20 bg-zinc-900 fixed z-10">
-      <div className="flex justify-between items-center text-white px-4 h-full max-w-screen-lg mx-auto">
-        <h1 className="font-signature text-2xl md:text-2xl">
-          Francis S. Verissimo
-        </h1>
+    <div className="fixed z-10 h-20 w-full bg-zinc-900">
+      <div className="mx-auto flex h-full max-w-screen-lg items-center justify-between px-4 text-white">
+        <h1 className="font-signature text-2xl md:text-2xl">Francis S. Verissimo</h1>
 
         <ul className="hidden md:flex">
           {links.map(({ id, name, link }) => {
@@ -48,7 +46,7 @@ export function NavBar() {
                 key={id}
                 smooth
                 duration={500}
-                className="px-4 cursor-pointer capitalize font-medium text-zinc-400 hover:scale-110 duration-75 py-4 first:pl-0 last:pr-0"
+                className="cursor-pointer px-4 py-4 font-medium capitalize text-zinc-400 duration-75 first:pl-0 last:pr-0 hover:scale-110"
               >
                 {name}
               </Link>
@@ -58,13 +56,13 @@ export function NavBar() {
 
         <div
           onClick={() => setShowNav(!showNav)}
-          className="text-zinc-400 cursor-pointer py-4 pl-4 pr-0 z-10 md:hidden"
+          className="z-10 cursor-pointer py-4 pl-4 pr-0 text-zinc-400 md:hidden"
         >
           {showNav ? <X size={32} /> : <List size={32} />}
         </div>
 
         {showNav && (
-          <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-zinc-900 to-zinc-600 text-zinc-400">
+          <ul className="absolute top-0 left-0 flex h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-zinc-900 to-zinc-600 text-zinc-400">
             {links.map(({ id, name, link }) => {
               return (
                 <Link
@@ -73,7 +71,7 @@ export function NavBar() {
                   to={link}
                   smooth
                   duration={500}
-                  className="px-4 cursor-pointer capitalize py-6 text-4xl"
+                  className="cursor-pointer px-4 py-6 text-4xl capitalize"
                 >
                   {name}
                 </Link>

@@ -2,8 +2,8 @@ import html from "./images/html.svg";
 import css from "./images/css.svg";
 import typescript from "./images/typescript.svg";
 import react from "./images/react.svg";
-import sass from "./images/sass.svg";
 import tailwindcss from "./images/tailwindcss.svg";
+import sass from "./images/sass.svg";
 import styledComponents from "./images/styledComponents.svg";
 import node from "./images/node.svg";
 import github from "./images/github.svg";
@@ -41,40 +41,40 @@ export const knowledge = [
     name: "TailwindCSS",
     style: "bg-[#38b2ac]",
   },
-  {
-    id: 11,
-    image: firebase,
-    name: "Firebase",
-    style: "bg-[#f58220]",
-  },
-  {
-    id: 5,
-    image: sass,
-    name: "Sass",
-    style: "bg-[#cb6699]",
-  },
-  {
-    id: 9,
-    image: github,
-    name: "Github",
-    style: "bg-white",
-  },
-  {
-    id: 7,
-    image: styledComponents,
-    name: "Styled Components",
-    style: "bg-white",
-  },
-  {
-    id: 10,
-    image: graphql,
-    name: "GraphQL",
-    style: "bg-[#e434aa]",
-  },
-  {
-    id: 8,
-    image: node,
-    name: "NodeJS",
-    style: "bg-[#83cd29]",
-  },
+  // {
+  //   id: 11,
+  //   image: firebase,
+  //   name: "Firebase",
+  //   style: "bg-[#f58220]",
+  // },
+  // {
+  //   id: 5,
+  //   image: sass,
+  //   name: "Sass",
+  //   style: "bg-[#cb6699]",
+  // },
+  // {
+  //   id: 9,
+  //   image: github,
+  //   name: "Github",
+  //   style: "bg-white",
+  // },
+  // {
+  //   id: 7,
+  //   image: styledComponents,
+  //   name: "Styled Components",
+  //   style: "bg-white",
+  // },
+  // {
+  //   id: 10,
+  //   image: graphql,
+  //   name: "GraphQL",
+  //   style: "bg-[#e434aa]",
+  // },
+  // {
+  //   id: 8,
+  //   image: node,
+  //   name: "NodeJS",
+  //   style: "bg-[#83cd29]",
+  // },
 ];

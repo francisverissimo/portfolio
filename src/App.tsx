@@ -37,6 +37,7 @@ export function App() {
       } catch (error) {
         console.error(error);
       }
+
       setIsLoading(false);
     }
 
@@ -54,7 +55,7 @@ export function App() {
             <Home homeData={francisData.home} />
             <About aboutData={francisData.about} />
             <Projects projectsData={francisData.projects} />
-            <Knowledge />
+            {/* <Knowledge /> */}
             <Contact />
           </>
         )
