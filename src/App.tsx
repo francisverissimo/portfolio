@@ -8,7 +8,6 @@ import {
 } from "./types";
 import { About } from "./components/About";
 import { Contact } from "./components/Contact";
-import { Knowledge } from "./components/Knowledge";
 import { Home } from "./components/Home";
 import { NavBar } from "./components/NavBar";
 import { Projects } from "./components/Projects";

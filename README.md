@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="francis's portfolio" src=".github/francis-s-portfolio.svg" width="100%">
+  <img alt="francis's portfolio" src=".github/portfolio.png" width="100%">
 </p>
 
 <h2>Site published <a href="https://francissportfolio.vercel.app/">here</a></h2>
