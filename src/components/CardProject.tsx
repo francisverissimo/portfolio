@@ -10,8 +10,13 @@ export function CardProject({ project, index }: CardProjectProps) {
   const { name, description, stack, applicationUrl, githubRepoUrl } = project;
 
   return (
-    <div className={`flex flex-col items-start ${index % 2 == 0 ? "md:flex-row" : "md:flex-row-reverse"} `}>
-      <img src={project.imageURL} className="aspect-video w-full md:max-w-[60%] md:rounded-lg" />
+    <div
+      className={`flex flex-col items-start ${index % 2 == 0 ? "md:flex-row" : "md:flex-row-reverse"} `}
+    >
+      <img
+        src={project.imageURL}
+        className="aspect-video w-full object-cover md:max-w-[60%] md:rounded-lg"
+      />
 
       <div className="flex h-full w-full flex-col items-center justify-center gap-y-4 p-4">
         <strong className="text-xl font-medium">{name}</strong>

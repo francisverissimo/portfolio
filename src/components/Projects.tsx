@@ -17,7 +17,10 @@ export function Projects({ projectsData }: ProjectsProps) {
 
         <div className="flex flex-col gap-x-5 gap-y-14">
           {projectsData &&
-            projectsData.map((project, index) => <CardProject key={project.id} index={index} project={project} />)}
+            projectsData.map(
+              (project, index) =>
+                project.active && <CardProject key={project.id} index={index} project={project} />
+            )}
         </div>
       </div>
     </div>
