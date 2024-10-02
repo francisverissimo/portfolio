@@ -1,64 +1,41 @@
-import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "./services/firebase";
-import {
-  AboutFirestoreData,
-  HomeFirestoreData,
-  ProjectFirestoreData,
-} from "./types";
-import { About } from "./components/About";
-import { Contact } from "./components/Contact";
-import { Home } from "./components/Home";
-import { NavBar } from "./components/NavBar";
-import { Projects } from "./components/Projects";
-import { Loading } from "./components/Loading";
-
-interface FrancisData {
-  home: HomeFirestoreData;
-  about: AboutFirestoreData;
-  projects: ProjectFirestoreData[];
-}
+import { useEffect, useState } from 'react'
+import { PortfolioData } from './types'
+import { About } from './components/About'
+import { Contact } from './components/Contact'
+import { Home } from './components/Home'
+import { NavBar } from './components/NavBar'
+import { Projects } from './components/Projects'
+import { Loading } from './components/Loading'
+import { getPortfolioData } from './services/firestore'
 
 export function App() {
-  const [francisData, setFrancisData] = useState<FrancisData>();
-  const [isLoading, setIsLoading] = useState(true);
+  const [portfolioData, setPortfolioData] = useState<PortfolioData>()
+
+  async function getPortfolio() {
+    const portfolio = await getPortfolioData()
+
+    if (portfolio) {
+      setPortfolioData(portfolio)
+    }
+  }
 
   useEffect(() => {
-    async function getFirestoreFrancisDocument() {
-      try {
-        const docRef = doc(db, "data-page", "francissverissimo");
-        const docSnap = await getDoc(docRef);
+    getPortfolio()
+  }, [])
 
-        if (docSnap.exists()) {
-          const data = docSnap.data() as FrancisData;
-          setFrancisData(data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
+  if (!portfolioData) {
+    return <Loading />
+  }
 
-      setIsLoading(false);
-    }
-
-    getFirestoreFrancisDocument();
-  }, []);
+  const { home, about, projects } = portfolioData
 
   return (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        francisData && (
-          <>
-            <NavBar />
-            <Home homeData={francisData.home} />
-            <About aboutData={francisData.about} />
-            <Projects projectsData={francisData.projects} />
-            {/* <Knowledge /> */}
-            <Contact />
-          </>
-        )
-      )}
+      <NavBar />
+      <Home homeData={home} />
+      <Projects projectsData={projects} />
+      <About aboutData={about} />
+      <Contact />
     </>
-  );
+  )
 }
