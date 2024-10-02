@@ -1,79 +1,74 @@
-import { Link } from "react-scroll";
-import { HomeFirestoreData } from "../types";
-import { CaretRight, GithubLogo, LinkedinLogo } from "phosphor-react";
-import { knowledge } from "../assets/knowledge";
-import Lottie from "lottie-react";
-import devWorking from "../assets/animations/dev-working.json";
+import { HomeFirestoreData } from '../types'
+import { GithubLogo, LinkedinLogo } from 'phosphor-react'
+import { knowledge } from '../assets/knowledge'
+import Lottie from 'lottie-react'
+import devWorking from '../assets/animations/dev-working.json'
 
 interface HomeProps {
-  homeData: HomeFirestoreData;
+  homeData: HomeFirestoreData
 }
 
 export function Home({ homeData }: HomeProps) {
-  const { title, text } = homeData;
+  const { text, title } = homeData
+
+  const myNameIndex = text.indexOf('Francis')
+
+  const greeting = text.slice(0, myNameIndex)
+  const name = text.slice(myNameIndex)
 
   return (
-    <div
-      id="home"
-      className="h-auto w-full bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-600 py-20 text-white"
-    >
+    <div id="home" className="h-auto w-full bg-zinc-800 py-20 text-zinc-50">
       <div className="mx-auto flex h-full max-w-screen-lg flex-col items-center justify-center gap-2 px-4 pt-5 md:flex-row">
-        {homeData && (
-          <div className="flex max-w-lg flex-col justify-center">
-            <h2 className="text-4xl font-bold text-white md:p-0 md:text-5xl">{title}</h2>
+        <div className="flex w-full flex-col items-center justify-center md:w-fit">
+          <p className="text-xl font-medium text-zinc-100">{greeting}</p>
+          <p className="py-2 text-2xl font-bold text-zinc-100 md:text-3xl">{name}</p>
+          <p className="text-xl font-light uppercase italic text-zinc-100 md:text-2xl">{title}</p>
+        </div>
 
-            <p className="py-4 text-justify text-lg text-zinc-300">{text}</p>
-
-            <div className="flex items-center gap-4 place-self-end">
-              <a
-                target="_blank"
-                href="https://www.linkedin.com/in/francissverissimo/"
-                className="rounded-full bg-zinc-400 p-2 duration-100 hover:bg-zinc-100"
-              >
-                <LinkedinLogo weight="bold" size={26} className="text-zinc-900" />
-              </a>
-
-              <a
-                target="_blank"
-                href="https://github.com/francissverissimo/"
-                className="rounded-full bg-zinc-400 p-2 duration-100 hover:bg-zinc-100"
-              >
-                <GithubLogo weight="bold" size={26} className="text-zinc-900" />
-              </a>
-            </div>
-
-            <div>
-              <Link
-                to="projects"
-                smooth
-                duration={500}
-                className="group my-2 flex w-fit cursor-pointer items-center gap-1 rounded-lg bg-gradient-to-r from-amber-500 via-orange-600 to-orange-700 px-6 py-3 font-medium text-white"
-              >
-                Projetos
-                <span className="duration-200 group-hover:rotate-90">
-                  <CaretRight weight="bold" size={22} />
-                </span>
-              </Link>
-            </div>
-          </div>
-        )}
-
-        <div>
-          <Lottie animationData={devWorking} loop={true} />
+        <div className="max-w-xs">
+          <Lottie animationData={devWorking} loop />
         </div>
       </div>
 
-      <div className="mt-8 flex flex-col items-center gap-2">
-        <strong className="font-medium">Tech Stack</strong>
-
-        <div className="flex gap-2">
-          {knowledge.map((k) => (
-            <div key={k.id} className="flex h-14 w-14 justify-center rounded-full bg-zinc-50">
-              <img src={k.image} alt={k.name} className="w-8" />
-            </div>
-          ))}
+      <div className="pointer-events-none flex flex-col items-center gap-2 py-4">
+        <div className="flex gap-4">
+          {knowledge.map((k) => {
+            if (!['HTML', 'CSS'].includes(k.name)) {
+              return (
+                <div key={k.id}>
+                  <img src={k.image} alt={k.name} className="w-8" />
+                </div>
+              )
+            }
+          })}
         </div>
+      </div>
+
+      <div className="flex items-center justify-center gap-4">
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/francissverissimo/"
+          className="group p-2 duration-100"
+        >
+          <LinkedinLogo
+            weight="fill"
+            size={26}
+            className="text-zinc-50 transition group-hover:text-sky-500"
+          />
+        </a>
+
+        <a
+          target="_blank"
+          href="https://github.com/francissverissimo/"
+          className="group p-2 duration-100"
+        >
+          <GithubLogo
+            weight="fill"
+            size={26}
+            className="text-zinc-50 transition group-hover:text-zinc-400"
+          />
+        </a>
       </div>
     </div>
-  );
+  )
 }
