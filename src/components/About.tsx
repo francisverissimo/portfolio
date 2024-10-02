@@ -1,77 +1,76 @@
-import { useEffect, useState } from "react";
-import { getDownloadURL, ref } from "firebase/storage";
-import { storage } from "../services/firebase";
-import { AboutFirestoreData } from "../types";
-import { CircleNotch } from "phosphor-react";
+import { useEffect, useState } from 'react'
+import { AboutFirestoreData } from '../types'
+import { getAboutImageFromStorage } from '../services/storage'
+import { GraduationCap, Medal } from 'phosphor-react'
 
 interface AboutProps {
-  aboutData: AboutFirestoreData;
+  aboutData: AboutFirestoreData
 }
 
 export function About({ aboutData }: AboutProps) {
-  const [aboutImageURL, setAboutImageURL] = useState("");
-  const [imgIsLoading, setImgIsLoading] = useState(true);
+  const [aboutImageURL, setAboutImageURL] = useState('')
+
+  async function getAboutImage() {
+    const imageURL = await getAboutImageFromStorage()
+
+    if (imageURL) {
+      setAboutImageURL(imageURL)
+    }
+  }
 
   useEffect(() => {
-    async function getAboutFirebaseData() {
-      const imageAboutRef = ref(storage, "me.png");
-
-      try {
-        const imageAboutURL = await getDownloadURL(imageAboutRef);
-        setAboutImageURL(imageAboutURL);
-      } catch (error) {
-        console.error(error);
-      }
-
-      setImgIsLoading(false);
-    }
-
-    getAboutFirebaseData();
-  }, []);
+    getAboutImage()
+  }, [])
 
   return (
-    <div id="about" className="h-auto w-full bg-zinc-700 py-20 text-white">
+    <div id="about" className="h-auto w-full bg-zinc-800 py-20 text-zinc-50">
       <div className="mx-auto flex h-full w-full max-w-screen-lg flex-col justify-center px-4">
-        <div className="pb-2">
-          <p className="inline border-b-4 border-orange-500 text-4xl font-bold">Sobre</p>
+        <div className="flex flex-col items-center">
+          <p className="text-lg italic">Um pouco</p>
+          <p className="text-4xl font-bold uppercase">Sobre mim</p>
         </div>
 
-        <div className="flex flex-col-reverse items-center justify-center gap-10 pt-14 md:flex-row">
-          <div>
-            {imgIsLoading ? (
-              <CircleNotch size={150} className="animate-spin text-zinc-500" />
-            ) : (
-              <img
-                src={aboutImageURL}
-                alt="My profile photo"
-                className="mx-auto w-52 rounded-full md:w-full"
-                loading="lazy"
-                style={{
-                  opacity: 0,
-                  transform: "scale(0.86)",
-                  transitionDuration: "200ms",
-                }}
-                onLoad={(t) => {
-                  t.currentTarget.style.opacity = "1";
-                  t.currentTarget.style.transform = "initial";
-                }}
-              />
-            )}
-          </div>
+        <div className="flex w-full flex-col justify-center gap-10 pt-8 md:flex-row">
+          <img
+            src={aboutImageURL}
+            alt="My profile photo"
+            className="h-52 w-52 self-center rounded-3xl md:h-64 md:w-64 md:self-auto"
+            loading="lazy"
+            style={{
+              opacity: 0,
+              transitionDuration: '200ms',
+            }}
+            onLoad={(t) => {
+              t.currentTarget.style.opacity = '1'
+              t.currentTarget.style.transform = 'initial'
+            }}
+          />
 
-          {aboutData && (
-            <div className="text-justify text-lg">
-              {aboutData.text.map((paragraph, index, array) => (
-                <span key={index}>
-                  {paragraph}
+          <div className="space-y-4 text-lg">
+            <div className="mb-8 grid gap-4 md:grid-cols-2">
+              <div className="flex flex-col items-center rounded-xl border-2 border-zinc-600 p-2">
+                <Medal size={32} weight="fill" />
+                <strong className="text-xl uppercase italic">experiência</strong>
+                <p className="font-light">+ de 2 anos</p>
+                <p className="text-center font-bold">Desenvolvedor Frontend</p>
+              </div>
 
-                  {index != array.length -1 && <div className="mx-2 inline-flex h-3 w-3 rounded-full bg-orange-500/60" />}
-                </span>
-              ))}
+              <div className="flex flex-col items-center rounded-xl border-2 border-zinc-600 p-2">
+                <GraduationCap size={32} weight="fill" />
+                <strong className="text-xl uppercase italic">formação</strong>
+                <p className="text-center font-light">Tecnologia em Sistemas para Internet</p>
+                <p className="text-center font-bold">Instituto Federal de Mato Grosso do Sul</p>
+              </div>
             </div>
-          )}
+
+            {aboutData.text.map((paragraph, index) => (
+              <p key={index} className="text-justify indent-10 leading-tight">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
