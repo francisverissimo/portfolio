@@ -1,11 +1,11 @@
-import { Grow } from "@mui/material";
-import { knowledge } from "../assets/knowledge";
-import * as HoverCard from "@radix-ui/react-hover-card";
+import { Grow } from '@mui/material'
+import { knowledge } from '../assets/knowledge'
+import * as HoverCard from '@radix-ui/react-hover-card'
 
 export function Knowledge() {
   return (
     <div id="knowledge" className="h-auto w-full bg-gradient-to-t from-zinc-500 to-zinc-900 py-20">
-      <div className="mx-auto flex h-full w-full max-w-screen-lg flex-col justify-center px-4 text-white">
+      <div className="mx-auto flex h-full w-full max-w-screen-lg flex-col justify-center px-4 text-zinc-50">
         <div className="pb-6 sm:pb-12">
           <p className="inline border-b-4 border-gray-500 text-2xl font-bold sm:text-4xl">
             Conhecimentos
@@ -17,17 +17,17 @@ export function Knowledge() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 type KnowledgeCardProp = {
   item: {
-    id: number;
-    image: string;
-    name: string;
-    style: string;
-  };
-};
+    id: number
+    image: string
+    name: string
+    style: string
+  }
+}
 
 function KnowledgeCard({ item }: KnowledgeCardProp) {
   return (
@@ -46,5 +46,5 @@ function KnowledgeCard({ item }: KnowledgeCardProp) {
         </HoverCard.Content>
       </HoverCard.Portal>
     </HoverCard.Root>
-  );
+  )
 }
