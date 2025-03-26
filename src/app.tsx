@@ -33,9 +33,9 @@ export function App() {
     <>
       <NavBar />
       <Home homeData={home} />
-      <Projects projectsData={projects} />
-      <About aboutData={about} />
-      <Contact />
+      {/* <Projects projectsData={projects} /> */}
+      {/* <About aboutData={about} /> */}
+      {/* <Contact /> */}
     </>
   )
 }
