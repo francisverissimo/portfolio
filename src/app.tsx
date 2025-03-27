@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { PortfolioData } from './types'
 import { About } from './components/About'
 import { Contact } from './components/Contact'
-import { Home } from './components/Home'
+import { Presentation } from './components/presentation'
 import { NavBar } from './components/NavBar'
 import { Projects } from './components/Projects'
 import { Loading } from './components/Loading'
@@ -32,7 +32,7 @@ export function App() {
   return (
     <>
       <NavBar />
-      <Home homeData={home} />
+      <Presentation homeData={home} />
       {/* <Projects projectsData={projects} /> */}
       {/* <About aboutData={about} /> */}
       {/* <Contact /> */}

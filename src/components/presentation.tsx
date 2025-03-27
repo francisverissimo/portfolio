@@ -8,7 +8,7 @@ interface HomeProps {
   homeData: HomeFirestoreData
 }
 
-export function Home({ homeData }: HomeProps) {
+export function Presentation({ homeData }: HomeProps) {
   const { text, title } = homeData
 
   const myNameIndex = text.indexOf('Francis')
@@ -17,7 +17,7 @@ export function Home({ homeData }: HomeProps) {
   const name = text.slice(myNameIndex)
 
   return (
-    <div id="home" className="h-auto w-full bg-zinc-800 py-20 text-zinc-50">
+    <div id="home" className="flex min-h-screen w-full flex-col bg-zinc-800 pt-20 text-zinc-50 justify-center">
       <div className="mx-auto flex h-full max-w-screen-lg flex-col items-center justify-center gap-2 px-4 pt-5 md:flex-row">
         <div className="flex w-full flex-col items-center justify-center md:w-fit">
           <p className="text-xl font-medium text-zinc-100">{greeting}</p>
