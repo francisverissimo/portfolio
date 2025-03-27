@@ -5,10 +5,13 @@ import react from './images/react.svg'
 import tailwindcss from './images/tailwindcss.svg'
 import sass from './images/sass.svg'
 import styledComponents from './images/styledComponents.svg'
-import node from './images/node.svg'
+import node from './images/nodejs.svg'
 import github from './images/github.svg'
 import graphql from './images/graphql.svg'
 import firebase from './images/firebase.svg'
+import git from './images/git.svg'
+import docker from './images/docker.svg'
+
 
 export const knowledge = [
   {
@@ -41,12 +44,19 @@ export const knowledge = [
     name: 'TailwindCSS',
     style: 'bg-[#38b2ac]',
   },
+  // {
+  //   id: 11,
+  //   image: firebase,
+  //   name: 'Firebase',
+  //   style: 'bg-[#f58220]',
+  // },
   {
     id: 11,
-    image: firebase,
-    name: 'Firebase',
-    style: 'bg-[#f58220]',
+    image: git,
+    name: 'Git',
+    style: 'bg-[#F34F29]',
   },
+  
   // {
   //   id: 5,
   //   image: sass,
@@ -71,10 +81,10 @@ export const knowledge = [
     name: 'GraphQL',
     style: 'bg-[#e434aa]',
   },
-  // {
-  //   id: 8,
-  //   image: node,
-  //   name: "NodeJS",
-  //   style: "bg-[#83cd29]",
-  // },
+  {
+    id: 8,
+    image: node,
+    name: "NodeJS",
+    style: "bg-[#5fa04e]",
+  },
 ]
