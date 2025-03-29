@@ -12,79 +12,83 @@ import firebase from './images/firebase.svg'
 import git from './images/git.svg'
 import docker from './images/docker.svg'
 
-
-export const knowledge = [
+export const knowledges = [
   {
-    id: 1,
     image: html,
-    name: 'HTML',
+    name: 'html',
+    displayName: 'HTML',
     style: 'bg-[#e44d26]',
   },
   {
-    id: 2,
     image: css,
-    name: 'CSS',
+    name: 'css',
+    displayName: 'CSS',
     style: 'bg-[#1572b6]',
   },
   {
-    id: 4,
     image: react,
-    name: 'React',
+    name: 'react',
+    displayName: 'React',
     style: 'bg-[#61dafb]',
   },
   {
-    id: 3,
     image: typescript,
-    name: 'Typescript',
+    name: 'typescript',
+    displayName: 'Typescript',
     style: 'bg-[#007acc]',
   },
   {
-    id: 6,
     image: tailwindcss,
-    name: 'TailwindCSS',
+    name: 'tailwind-css',
+    displayName: 'Tailwind CSS',
     style: 'bg-[#38b2ac]',
   },
-  // {
-  //   id: 11,
-  //   image: firebase,
-  //   name: 'Firebase',
-  //   style: 'bg-[#f58220]',
-  // },
   {
-    id: 11,
+    image: firebase,
+    name: 'firebase',
+    displayName: 'Firebase',
+    style: 'bg-[#f58220]',
+  },
+  {
     image: git,
-    name: 'Git',
+    name: 'git',
+    displayName: 'Git',
     style: 'bg-[#F34F29]',
   },
-  
   // {
-  //   id: 5,
   //   image: sass,
-  //   name: "Sass",
+  //   name: "sass",
+  //   displayName: 'Sass',
   //   style: "bg-[#cb6699]",
   // },
   // {
-  //   id: 9,
   //   image: github,
   //   name: "Github",
+  //   displayName: 'github',
   //   style: "bg-white",
   // },
   // {
-  //   id: 7,
   //   image: styledComponents,
-  //   name: "Styled Components",
+  //   name: "styled-components",
+  //    displayName: 'Styled Components',
   //   style: "bg-white",
   // },
   {
-    id: 10,
     image: graphql,
-    name: 'GraphQL',
+    name: 'graphql',
+    displayName: 'GraphQL',
     style: 'bg-[#e434aa]',
   },
   {
-    id: 8,
     image: node,
-    name: "NodeJS",
+    name: "node",
+    displayName: 'NodeJS',
     style: "bg-[#5fa04e]",
+  },
+  {
+    image: docker,
+    name: "docker",
+    displayName: 'Docker',
+    style: "bg-[#019BC6]",
   },
 ]
