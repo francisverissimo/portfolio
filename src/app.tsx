@@ -1,17 +1,20 @@
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { About } from './components/About'
-import { Contact } from './components/Contact'
-import { Presentation } from './components/presentation'
 import { NavBar } from './components/NavBar'
-import { Projects } from './components/Projects'
+import { Contact } from './components/Contact'
+import { Projects } from './components/projects'
+import { Presentation } from './components/presentation'
+
+const queryClient = new QueryClient()
 
 export function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <NavBar />
       <Presentation />
-      {/* <Projects projectsData={projects} /> */}
+      <Projects />
       {/* <About aboutData={about} /> */}
       {/* <Contact /> */}
-    </>
+    </QueryClientProvider>
   )
 }
