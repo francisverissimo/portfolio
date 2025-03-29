@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { GithubUser, UserService } from '../services/user-service'
 import { Loading } from './Loading'
 import { GithubLogo, LinkedinLogo } from 'phosphor-react'
-import { knowledge } from '../assets/knowledge'
+import { knowledges } from '../assets/knowledge'
 import node_orange from '../assets/knowledge/images/node-line-orange.svg'
 
 export function Presentation() {
@@ -34,7 +34,7 @@ export function Presentation() {
           <img
             src={node_orange}
             alt="node js in lines orange"
-            className="fixed z-[-1] w-full max-w-xl -rotate-45 animate-low-spin opacity-40 blur-[1px]"
+            className="fixed z-[-1] w-full max-w-xl animate-low-spin opacity-40 blur-[1px]"
           />
 
           <img
@@ -56,9 +56,9 @@ export function Presentation() {
 
       <div className="pointer-events-none flex flex-col items-center gap-2 py-4">
         <div className="flex flex-wrap justify-center gap-4 px-4">
-          {knowledge.map((k) => {
-            if (!['HTML', 'CSS'].includes(k.name)) {
-              return <img key={k.id} src={k.image} alt={k.name} className="w-12" />
+          {knowledges.map((k, idx) => {
+            if (!['html', 'css'].includes(k.name)) {
+              return <img key={idx} src={k.image} alt={k.name} className="w-12" />
             }
           })}
         </div>
