@@ -16,15 +16,17 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const { name, description, topics, screenshots, homepage, html_url } = project
+  const { name, description, topics, screenshots, homepage, html_url, logo } = project
 
   const descriptionSplitted = description.split('.').filter((item) => item.trim() !== '')
 
   return (
     <div className="flex flex-col items-center space-y-4 border-t-2 border-zinc-600 pt-4">
-      {/* {logo && <img src={logo} alt="logo" className="w-12 md:w-14" />} */}
-
-      <strong className="text-3xl font-medium capitalize">{name.replaceAll('-', ' ')}</strong>
+      {logo ? (
+        <img src={logo} alt="logo" className="w-16 md:w-20" />
+      ) : (
+        <strong className="text-3xl font-medium">{name.replaceAll('-', ' ')}</strong>
+      )}
 
       {screenshots ? (
         <Swiper
