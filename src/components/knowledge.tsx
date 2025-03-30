@@ -1,5 +1,5 @@
 import { Grow } from '@mui/material'
-import { knowledge } from '../assets/knowledge'
+import { knowledges } from '../assets/knowledge'
 import * as HoverCard from '@radix-ui/react-hover-card'
 
 export function Knowledge() {
@@ -13,7 +13,7 @@ export function Knowledge() {
         </div>
 
         <div className="grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-8 md:px-0">
-          {knowledge && knowledge.map((item) => <KnowledgeCard key={item.id} item={item} />)}
+          {knowledges && knowledges.map((item, idx) => <KnowledgeCard key={idx} item={item} />)}
         </div>
       </div>
     </div>
@@ -22,7 +22,6 @@ export function Knowledge() {
 
 type KnowledgeCardProp = {
   item: {
-    id: number
     image: string
     name: string
     style: string
