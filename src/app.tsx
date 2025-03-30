@@ -1,5 +1,5 @@
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { About } from './components/About'
+import { About } from './components/about'
 import { NavBar } from './components/NavBar'
 import { Contact } from './components/Contact'
 import { Projects } from './components/projects'
@@ -13,8 +13,8 @@ export function App() {
       <NavBar />
       <Presentation />
       <Projects />
-      {/* <About aboutData={about} /> */}
-      {/* <Contact /> */}
+      <About />
+      <Contact />
     </QueryClientProvider>
   )
 }
