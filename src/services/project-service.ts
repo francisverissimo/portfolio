@@ -1,6 +1,6 @@
 import { ApiModel } from './api'
 
-interface RepoResponse {
+interface Repo {
   name: string
   html_url: string
   homepage: string
@@ -9,12 +9,14 @@ interface RepoResponse {
 }
 
 interface Content {
+  name: string
   url: string
   download_url: string
 }
 
-export interface Project extends RepoResponse {
-  screenshots: Content[] | undefined
+export interface Project extends Repo {
+  logo?: string
+  screenshots: Content[] | []
 }
 
 export class ProjectService {
@@ -37,20 +39,35 @@ export class ProjectService {
       }
 
       const [publicRepos, contents] = await Promise.all([
-        reposResponse.json() as Promise<RepoResponse[]>,
+        reposResponse.json() as Promise<Repo[]>,
         Promise.all(contentsResponse.map((repo) => repo.json())) as Promise<Content[][]>,
       ])
 
       const repos = publicRepos.filter((repo) => envRepos.includes(repo.name))
 
       return repos.map((repo) => {
+        const repoContents = contents.find((cont) => cont[0].url.includes(repo.name))
+        let logo = ''
+        const screenshots: Content[] = []
+
+        if (repoContents) {
+          for (let repo of repoContents) {
+            if (repo.name.startsWith('logo')) {
+              logo = repo.download_url
+            } else {
+              screenshots.push(repo)
+            }
+          }
+        }
+
         return {
           name: repo.name,
           html_url: repo.html_url,
           homepage: repo.homepage,
           description: repo.description,
           topics: repo.topics,
-          screenshots: contents.find((cont) => cont[0].url.includes(repo.name)),
+          logo,
+          screenshots,
         }
       }) as Project[]
     } catch (err) {
@@ -59,4 +76,3 @@ export class ProjectService {
     }
   }
 }
-
