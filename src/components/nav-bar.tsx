@@ -1,34 +1,39 @@
 import { useState } from 'react'
 import { List, X } from 'phosphor-react'
-import { Link } from 'react-scroll'
 
 export function NavBar() {
   const [showNav, setShowNav] = useState(false)
 
   const links = [
     {
-      id: 1,
-      name: 'home',
+      name: 'início',
       link: 'home',
     },
     {
-      id: 3,
       link: 'projects',
       name: 'projetos',
     },
     {
-      id: 2,
       link: 'about',
       name: 'sobre',
     },
     {
-      id: 5,
       link: 'contact',
       name: 'contato',
     },
   ]
 
-  function handleClickMenuButton() {
+  function handleNavButton(elementId: string) {
+    const element = document.getElementById(`${elementId}`)
+
+    if (element) {
+      const rect = element.getBoundingClientRect()
+      console.log(rect)
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
+  function handleToggleMenu() {
     if (!showNav) {
       setShowNav(true)
       document.body.style.overflow = 'hidden'
@@ -45,23 +50,21 @@ export function NavBar() {
         <strong className="p-4 text-2xl font-light italic">Francis Verissimo</strong>
 
         <ul className="hidden md:flex">
-          {links.map(({ id, name, link }) => {
+          {links.map(({ name, link }, idx) => {
             return (
-              <Link
-                to={link}
-                key={id}
-                smooth
-                duration={500}
-                className="cursor-pointer p-4 font-medium uppercase text-zinc-400 duration-75 hover:text-orange-500"
+              <button
+                key={idx}
+                onClick={() => handleNavButton(link)}
+                className="cursor-pointer capitalize p-4 font-medium text-zinc-400 duration-75 hover:text-orange-500"
               >
                 {name}
-              </Link>
+              </button>
             )
           })}
         </ul>
 
         <div
-          onClick={handleClickMenuButton}
+          onClick={handleToggleMenu}
           className="absolute right-0 z-[24] cursor-pointer p-4 text-zinc-400 hover:text-orange-500 md:hidden"
         >
           <List size={32} />
@@ -74,24 +77,25 @@ export function NavBar() {
           className="fixed left-0 top-0 z-[22] flex h-screen w-full flex-col items-center justify-center bg-zinc-950/50"
         >
           <div
-            onClick={handleClickMenuButton}
+            onClick={handleToggleMenu}
             className="absolute right-0 top-0 z-[24] flex h-20 cursor-pointer items-center p-4 text-zinc-400 hover:text-orange-500"
           >
             <X size={32} />
           </div>
 
-          {links.map(({ id, name, link }) => {
+          {links.map(({ name, link }, idx) => {
             return (
-              <Link
-                key={id}
-                onClick={handleClickMenuButton}
-                to={link}
-                smooth
-                duration={500}
-                className="cursor-pointer p-4 text-4xl font-light uppercase text-zinc-50 transition hover:text-orange-500"
+              <button
+                key={idx}
+                onClick={() => {
+                  console.log('ckic')
+                  handleNavButton(link)
+                  if (showNav) handleToggleMenu()
+                }}
+                className="cursor-pointer capitalize p-4 text-4xl font-light text-zinc-50 transition hover:text-orange-500"
               >
                 {name}
-              </Link>
+              </button>
             )
           })}
         </ul>
