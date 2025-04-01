@@ -19,7 +19,7 @@ export function About() {
             <Lottie animationData={devWorking} loop />
           </div>
 
-          <div className="space-y-4 text-lg">
+          <div className="flex-2 space-y-4 text-lg">
             <div className="mb-8 grid gap-4 md:grid-cols-2">
               <div className="flex flex-col items-center rounded-xl bg-zinc-700/60 px-2 py-6">
                 <div className="flex gap-1">
@@ -43,7 +43,7 @@ export function About() {
             {aboutContent.map((paragraph, index) => {
               if (paragraph) {
                 return (
-                  <p key={index} className="text-justify indent-10 leading-tight">
+                  <p key={index} className="text-justify leading-tight">
                     {paragraph.concat('.')}
                   </p>
                 )

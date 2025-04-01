@@ -14,9 +14,7 @@
   }
 }
 
-@layer base {
-  body {
-    @apply font-open-sans bg-zinc-800;
-    -webkit-font-smoothing: antialiased;
-  }
+body {
+  @apply font-open-sans bg-zinc-800;
+  -webkit-font-smoothing: antialiased;
 }

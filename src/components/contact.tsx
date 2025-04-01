@@ -1,4 +1,4 @@
-import { Envelope, GithubLogo, LinkedinLogo, Phone, WhatsappLogo } from 'phosphor-react'
+import { Envelope, GithubLogo, LinkedinLogo, WhatsappLogo } from 'phosphor-react'
 
 export function Contact() {
   return (

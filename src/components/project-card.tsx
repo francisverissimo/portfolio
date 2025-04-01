@@ -84,10 +84,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       <div className="flex h-full w-full max-w-2xl flex-col justify-center divide-y divide-zinc-600">
-        <div className="p-4">
+        <div className="space-y-4 p-4">
           {descriptionSplitted.map((item, index) => {
             return (
-              <p key={index} className="text-justify indent-10 text-lg">
+              <p key={index} className="text-justify text-lg">
                 {item.trim().concat('.')}
               </p>
             )
@@ -100,7 +100,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
             if (!icon) {
               return (
-                <span key={i} className="text-lg capitalize italic text-orange-500">
+                <span key={i} className="text-lg text-orange-500 capitalize italic">
                   {tech}
                 </span>
               )
