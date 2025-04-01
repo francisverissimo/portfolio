@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Project, ProjectService } from '../services/project-service'
 import { ProjectCard } from './project-card'
-import { Loading } from './Loading'
+import { Loading } from './loading'
 
 export function Projects() {
   const [projects, setProjects] = useState<Project[]>()

@@ -1,7 +1,7 @@
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { About } from './components/about'
 import { NavBar } from './components/NavBar'
-import { Contact } from './components/Contact'
+import { Contact } from './components/contact'
 import { Projects } from './components/projects'
 import { Presentation } from './components/presentation'
 

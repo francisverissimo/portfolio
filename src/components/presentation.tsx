@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { GithubUser, UserService } from '../services/user-service'
-import { Loading } from './Loading'
+import { Loading } from './loading'
 import { GithubLogo, LinkedinLogo } from 'phosphor-react'
 import { knowledges } from '../assets/knowledge'
 import node_orange from '../assets/knowledge/images/node-line-orange.svg'

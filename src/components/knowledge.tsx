@@ -1,6 +1,5 @@
-import { Grow } from '@mui/material'
-import { knowledges } from '../assets/knowledge'
 import * as HoverCard from '@radix-ui/react-hover-card'
+import { knowledges } from '../assets/knowledge'
 
 export function Knowledge() {
   return (
@@ -37,11 +36,9 @@ function KnowledgeCard({ item }: KnowledgeCardProp) {
 
       <HoverCard.Portal>
         <HoverCard.Content side="top" align="center">
-          <Grow in>
-            <div className={`mb-2 rounded px-4 py-1 text-sm font-semibold ${item.style}`}>
-              {item.name}
-            </div>
-          </Grow>
+          <div className={`mb-2 rounded px-4 py-1 text-sm font-semibold ${item.style}`}>
+            {item.name}
+          </div>
         </HoverCard.Content>
       </HoverCard.Portal>
     </HoverCard.Root>
