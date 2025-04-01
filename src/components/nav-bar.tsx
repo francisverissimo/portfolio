@@ -28,7 +28,6 @@ export function NavBar() {
 
     if (element) {
       const rect = element.getBoundingClientRect()
-      console.log(rect)
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
@@ -88,9 +87,8 @@ export function NavBar() {
               <button
                 key={idx}
                 onClick={() => {
-                  console.log('ckic')
                   handleNavButton(link)
-                  if (showNav) handleToggleMenu()
+                  handleToggleMenu()
                 }}
                 className="cursor-pointer capitalize p-4 text-4xl font-light text-zinc-50 transition hover:text-orange-500"
               >

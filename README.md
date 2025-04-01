@@ -1,25 +1,29 @@
-<p align="center">
-  <img alt="francis's portfolio" src=".github/portfolio.png" width="100%">
-</p>
+# portfolio
 
-<h2>Site published <a href="https://francissportfolio.vercel.app/">here</a></h2>
+Este é o meu portfólio pessoal, desenvolvido para exibir meus projetos e habilidades como desenvolvedor. 
 
-## Technologies
+## 🛠 Tecnologias Utilizadas
 
-This project was developed with the following technologies:
+- **React**: Utilizado para construir uma interface interativa e dinâmica.
+- **TypeScript**: Garante tipagem estática para maior segurança e produtividade durante o desenvolvimento.
+- **Tailwind CSS**: Framework de utilitário que possibilita estilização rápida e responsiva.
+- **GitHub API**: Consome dados do meu perfil GitHub, informações pessoais e repositórios, e exibe essas informações de forma organizada na aplicação.
 
-<ul>
-  <li>React</li>
-  <li>TailwindCSS</li>
-  <li>Firebase</li>
-  <li>Typescript</li>
-  <li>Vite JS</li>
-</ul>
+## 🚀 Acesse o Projeto
 
-## Project
+Você pode acessar o projeto online através do seguinte link:
 
-<p>
-  My personal portfolio website
-</p>
+[**Clique aqui para acessar**](https://francissportfolio.vercel.app/).
 
-**<p align="center" weight="bold">Personal project</p>**
+## 📸 Capturas de Tela
+Algumas capturas de tela do projeto:
+
+![Seção inicial, apresentação](./.github/print-1.png)
+
+![Seção de projetos](./.github/print-2.png)
+
+![Seção sobre mim](./.github/print-3.png)
+
+---
+
+Feito com 💙 por [francisverissimo](https://francissportfolio.vercel.app/)
